@@ -24,6 +24,7 @@
   "config": {
     "buildName": "onfocus",
     "srcPath": "./src/",
+    "includePath": "./src/html/",
     "devPath": "./local/",
     "buildPath": "./www/"
   },
@@ -33,6 +34,7 @@
     "grunt": "^1.5.3",
     "grunt-browserify": "^6.0.0",
     "grunt-contrib-sass": "^2.0.0",
-    "grunt-contrib-watch": "^1.1.0"
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-text-replace": "^0.4.0"
   }
 }
