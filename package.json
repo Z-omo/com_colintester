@@ -21,7 +21,18 @@
     "clearWWW": "rm -rf www/**/*.{css,js,map}",
     "syncResources": "rsync -a local/resources www/"
   },
+  "config": {
+    "buildName": "onfocus",
+    "srcPath": "./src/",
+    "devPath": "./local/",
+    "buildPath": "./www/"
+  },
   "devDependencies": {
-    
+    "@babel/preset-env": "^7.19.4",
+    "babelify": "^10.0.0",
+    "grunt": "^1.5.3",
+    "grunt-browserify": "^6.0.0",
+    "grunt-contrib-sass": "^2.0.0",
+    "grunt-contrib-watch": "^1.1.0"
   }
 }
