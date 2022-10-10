@@ -1,0 +1,56 @@
+/*
+ * SASS base variables for website.com
+ */
+
+//—————————————————————————————————————————————: View dimensions
+$mobileWidth:     25em
+$tabletWidth:     39em
+$wideTabletWidth: 59em
+$desktopWidth:    69em
+$maxWidth:        2000px
+$maxMainElementWidth: 1800px
+
+//—————————————————————————————————————————————: Layout values
+$contentMargin:   2rem
+$contentPadding:  2rem
+
+$viewEdgePos:     0.5rem
+
+$cornerRadius:    0.26em
+
+//—————————————————————————————————————————————: Text values
+$gRatio: 1.618
+$baseFontSize: 93.75%
+
+/*
+ * Fonts loaded via Typekit
+ * Preference is Seravek, but not available through paid plan, 
+ * perhaps buy it when funds allow?available?
+ */
+$fallbackFont: "Trebuchet MS", sans-serif
+$contentFont: "ff-tisa-sans-web-pro", $fallbackFont
+$headingFont: "ff-meta-web-pro", $fallbackFont
+
+$contentFontSize: 1rem
+$bodyContentLineHeight: $contentFontSize * $gRatio
+
+$charactersPerLine: 90
+$maxContentWidth: ($contentFontSize / $gRatio) * $charactersPerLine
+
+$headerTitleFontSize: 2.09rem // mobile view.
+$headerTitleLineHeight: $headerTitleFontSize * $gRatio
+$maxHeaderTitleWidth: ($headerTitleFontSize / $gRatio) * 24
+
+$textShadow: 2px 1px 1px theme(secondary)//rgba($primary, 0.8)
+
+//—————————————————————————————————————————————: Animation values
+$transDurationIn: 200ms
+$transDurationOut: 1s
+
+$easeOutQuint:  cubic-bezier(0.23, 1, 0.32, 1)
+$easeSpecial:   cubic-bezier(.9, 0, .13, 1.17)
+
+//—————————————————————————————————————————————: Image paths
+// prefix path with '~' so that webpack can build the final css.
+$imagePath:       '../resources/image/'
+$headerImagePath: '../resources/header/'

@@ -1,0 +1,141 @@
+/*
+ * SASS for website icon elements - colintester.com
+ */
+
+$iconsSVGFile:  '#{$imagePath}website-icons.svg'
+//$iconsPNGFile:  '#{$imagePath}family-links-website-icons-3.png'
+
+$iconNames: menu, twitter, facebook, google, linkedin, email, github
+
+$iconSize:        2.375rem // 38px, fixes Firefox odd scaling issue.
+$noSVGIconSize:   38px
+$iconInlineSize:  20px
+
+@function calcIconPos($iconNum: 0, $iconOffsetSize: $iconSize)
+  @return -($iconNum * $iconOffsetSize)
+
+=setIcon($iconName: 'menu', $iconOffsetSize: $iconSize, $y: 0)
+  $iconIndex: index($iconNames, $iconName) - 1
+  background-position: calcIconPos($iconIndex, $iconOffsetSize) $y
+
+=iconImage
+  background-color: transparent
+  //background-image: url($iconsPNGFile)
+  background-image: url($iconsSVGFile)
+
+  background-repeat: no-repeat
+  background-position: 0 top
+  background-size: auto 100%
+
+=setAsIcon
+  position: absolute
+  top: 0
+  left: 0
+  border: none
+  padding-top: $iconSize
+  width: $iconSize
+  height: 0
+  overflow: hidden
+  +iconImage
+
+//—————————————————————————————————————————————: ICON
+.icon
+  position: relative
+  top: 0
+  left: 0
+
+  width: $iconSize
+  height: $iconSize
+
+  a
+    +setAsIcon
+
+    &::after
+      display: none
+
+@each $iconLabel in $iconNames
+  .icon.#{$iconLabel} a, .as-icon.#{$iconLabel}::after, .inline-icon.#{$iconLabel}::after
+    +setIcon($iconLabel)
+
+.as-icon
+  position: relative
+  top: 0
+  left: 0
+  width: $iconSize
+
+  a
+    position: relative
+    margin: 0
+    padding: 0 0 0 $iconSize
+    width: 0
+    height: $iconSize
+    overflow: hidden
+
+  &::after
+    content: ''
+    +setAsIcon
+
+.inline-icon
+  position: relative
+
+  &::after
+    content: ''
+    +setAsIcon
+    //position: relative
+    //display: inline-block
+    //vertical-align: middle
+    //right: auto//-$iconSize
+    //bottom: auto
+    top: -($iconSize / 4) * 0.7
+    left: auto
+
+    -webkit-transform: scale(0.6)
+    -ms-transform: scale(0.6)
+    transform: scale(0.6)
+    background-color: theme(primary)
+    +corners(50%)
+
+  &:hover::after
+    border: none
+
+  &.github::after
+    background-color: transparent
+
+//—————————————————————————————————————————————: Social share links
+.share-links
+  margin: 0
+
+  dt
+    margin: 0 0 $contentMargin
+
+  dd
+    max-width: 320px
+
+  ul
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: space-between
+    margin: 0
+    padding: 0
+    
+  .icon
+    // for browsers with no flex support:
+    display: inline-block
+    vertical-align: top
+
+    &::before
+      display: none
+
+  @media only screen and (min-width: $tabletWidth)
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+
+    dt
+      margin: 0
+      padding-right: $contentPadding
+      line-height: $iconSize
+    
+    dd
+      flex-grow: 1

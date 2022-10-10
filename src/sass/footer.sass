@@ -1,0 +1,15 @@
+/*
+ * SASS for footer element - colintester.com
+ */
+footer
+  position: relative
+  box-sizing: border-box
+  padding: $contentPadding
+  width: auto
+  min-height: 6rem
+  background-color: theme(secondary)
+  color: white//$color4
+  z-index: 1
+
+  @media only screen and (min-width: $maxWidth)
+    +corners(0 0 $cornerRadius $cornerRadius)

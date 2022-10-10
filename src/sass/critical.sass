@@ -1,0 +1,48 @@
+/*
+ * SASS for critical rules to be loaded written into page <head>.
+ */
+@import "base"
+@import "sass-helpers"
+.boundary > header
+  padding: ($contentPadding * 2) $contentPadding $contentPadding
+  box-sizing: border-box
+  width: 100%
+  min-height: 120px
+  color: white
+  background-color: theme(secondary)
+
+  @media only screen and (min-width: $tabletWidth)
+    .home &
+      min-height: 320px
+
+  .logo
+    position: absolute
+    top: $viewEdgePos
+    left: $viewEdgePos
+    opacity: 0.9
+    width: 5em
+    height: 52px
+    z-index: 101
+    border: none
+
+    @media only screen and (min-width: $maxWidth)
+      left: auto
+
+    .focus-js &
+      position: fixed
+      
+    svg #iris
+      fill: theme(prim-blend80)
+
+    svg
+      transition: transform $transDurationIn ease-out
+      -webkit-transform-origin: top left
+      -ms-transform-origin: top left
+      transform-origin: top left
+      +transformThis(scale(1.2))
+    
+      @media only screen and (min-width: $tabletWidth)
+        +transformThis(scale(1.36))
+
+      .js-scrolled &
+        +transformThis(scale(.72))

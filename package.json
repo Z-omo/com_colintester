@@ -1,0 +1,27 @@
+{
+  "name": "com_colintester",
+  "version": "0.1.0",
+  "description": "Main (onFocus) website for Colin Tester",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Z-omo/com_colintester.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Z-omo/com_colintester/issues"
+  },
+  "homepage": "https://github.com/Z-omo/com_colintester#readme",
+  "scripts": {
+    "start": "npm run clearLocal && npm run dev",
+    "clearLocal": "rm -rf local/**/*.{css,js,map}",
+    "dev": "parcel './src/*.html' --dist-dir local -p 4000",
+    "build": "npm run clearWWW && parcel build './src/*.html' --target 'web' && npm run syncResources",
+    "clearWWW": "rm -rf www/**/*.{css,js,map}",
+    "syncResources": "rsync -a local/resources www/"
+  },
+  "devDependencies": {
+    
+  }
+}

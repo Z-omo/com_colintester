@@ -1,0 +1,53 @@
+/*
+ * SASS for image content - colintester.com
+ */
+.image
+  display: block
+  margin: 0 0 $contentMargin
+  max-width: $maxContentWidth
+
+  picture
+    display: block
+
+  .image
+    margin-bottom: 0
+
+  img
+    max-width: 100%
+
+  &.image-centred
+    text-align: center
+
+  &.float-image
+    margin: 0 auto $contentMargin
+    width: 100%
+
+    @media only screen and (min-width: round($tabletWidth / 1.3))
+      width: 50%
+
+      &.float-right
+        float: right
+        margin-left: $contentMargin * 2
+    
+      &.float-left
+        float: left
+        margin-right: $contentMargin * 2
+
+.image-group
+  display: flex
+  flex-flow: row wrap
+  justify-content: flex-start
+
+  img
+    display: block
+
+  .image
+    margin: 0 ($contentMargin / 3) ($contentMargin / 2) 0
+    width: 100%
+
+    @media only screen and (min-width: $tabletWidth)
+      flex: 1 0 32.3%
+      max-width: 45%
+
+      // for browsers with no flex support:
+      display: inline-block

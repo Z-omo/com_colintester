@@ -1,0 +1,33 @@
+/*
+ * SASS for button elements – colintester.com
+ */
+button, .button
+  display: block
+  margin: $contentMargin 0
+  max-width: 8rem
+  +corners(0.5em)
+  border: none
+  box-shadow: 0 0 0 1px theme(tert-blend20)
+  padding: 0.5em 2em
+  font-family: $headingFont, $fallbackFont
+  text-decoration: none
+  font-size: 1.1rem
+  line-height: 1.1rem
+  color: #333300//theme(secondary)
+  text-align: center
+  background-color: theme(prim-blend80)
+  outline: none
+  transition: background-color $transDurationOut
+
+  .side-bar &
+    margin-right: 0
+
+  &:hover
+    border: none
+    background-color: white
+    box-shadow: 0 0 0 1px theme(prim-blend80)
+    transition-duration: $transDurationIn
+
+.button::after
+  display: none
+  

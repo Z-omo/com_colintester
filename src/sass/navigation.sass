@@ -1,0 +1,229 @@
+/*
+ * SASS for navigation elements - colintester.com
+ */
+
+$mobileRibbonHeight: $iconSize + (2 * $viewEdgePos)
+
+//—————————————————————————————————————————————: Default view
+nav
+  background-color: theme(tertiary)
+
+  ul
+    list-style: none
+    margin: 0
+    padding: $contentPadding 0
+
+  li
+    margin: 0 auto ($contentMargin * 0.5)
+    width: 80%
+    +corners(0.5em)
+  
+  a
+    display: block
+    +corners(0.5em)
+    border: solid 1px theme(prim-blend20)
+    padding: 0.8em 2em
+    text-decoration: none
+    font-size: 1.2rem
+    color: theme(secondary)
+    text-align: center
+    background-color: theme(prim-tint50)
+
+  .as-icon
+    a
+      border: none
+      background-color: transparent
+      z-index: 1
+
+.boundary > header
+  a[href="#menu"] // <noscript>
+    @media only screen and (max-width: $tabletWidth) // mobile only
+      +setAsIcon
+      +setIcon(menu)
+
+      top: $viewEdgePos
+      right: $viewEdgePos
+      left: auto
+      z-index: 100
+
+    @media only screen and (min-width: $tabletWidth)
+      display: none
+
+
+//—————————————————————————————————————————————: Mobile and JS enabled only
+.focus-js nav
+  position: fixed
+  top: 0
+  right: 0
+  bottom: auto
+  left: 0
+  width: 100%
+  height: $mobileRibbonHeight
+  background-color: transparent
+  z-index: 100
+
+  &::before
+    content: ''
+    display: block
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    background-color: theme(sec-blend80)
+    z-index: -1
+    transition: opacity $transDurationIn ease-out
+    opacity: 0 // see also .js-scrolled below.
+
+  @media only screen and (max-width: $tabletWidth)
+    ul
+      // see also .js-scrolled below.
+      padding-top: $mobileRibbonHeight + ($contentPadding * 2)
+      background-color: theme(tert-blend80)//rgba($primary, 0.9)
+      transition-property: transform, opacity
+      transition-duration: $transDurationIn, $transDurationIn
+      transition-timing-function: $easeOutQuint, ease-in-out
+      -webkit-transform: translateY(-114%)
+      transform: translateY(-114%)
+      opacity: 0
+
+    &.open ul
+      transition-duration: $transDurationIn * 2, $transDurationIn * 2.8
+      -webkit-transform: translateY(0%)
+      transform: translateY(0%)
+      opacity: 1
+
+  #menuBtn
+    position: fixed
+    top: 0
+    right: 0
+    bottom: auto
+    left: auto
+    width: $mobileRibbonHeight
+    height: $mobileRibbonHeight
+
+    @media only screen and (min-width: $tabletWidth)
+      display: none
+    
+    &::after
+      content: ''
+      +setAsIcon
+      +setIcon(menu)
+      top: ($mobileRibbonHeight - $iconSize) / 2
+      right: ($mobileRibbonHeight - $iconSize) / 2
+      left: auto
+      transition: transform $transDurationIn $easeSpecial
+
+  &.open #menuBtn
+
+    &::after
+      transition-duration: $transDurationIn * 2
+      -webkit-transform: rotate(-145deg)
+      transform: rotate(-145deg)
+
+  .home-link
+    +setAsIcon
+    top: auto
+    left: $viewEdgePos
+    bottom: $viewEdgePos + 0.1rem
+    background-image: url('#{$imagePath}on-focus-logo.svg')
+    width: 44px
+    padding-top: 30px
+    opacity: 0.8
+
+.js-scrolled nav
+  &::before
+    opacity: 1
+
+@media only screen and (max-width: $tabletWidth)
+  .js-scrolled nav > ul
+    padding-top: $mobileRibbonHeight + ($contentPadding)
+
+//—————————————————————————————————————————————: Tablet and above.
+@media only screen and (min-width: $tabletWidth)
+  nav
+    position: absolute
+    top: 0
+    left: auto
+    padding: 0
+    width: 100%
+    max-width: $maxWidth
+    z-index: 100
+    background-color: transparent
+
+    .focus-js &
+      position: fixed
+      right: auto
+      left: auto
+
+    ul
+      padding: $contentPadding / 2
+
+      display: flex
+      flex-direction: row
+      justify-content: flex-end
+
+      // for browsers with no flex support:
+      text-align: right
+
+    li
+      margin: 0
+      padding: 0
+      width: auto
+
+      // for browsers with no flex support:
+      display: inline-block
+      
+    .active a
+        background-color: theme(prim-blend80)
+        color: black
+
+    .active a[href="/"] // home page link
+      background-color: transparent
+      color: white
+
+    a
+      border: none
+      padding: 0 1.8em
+      font-size: 1.1rem
+      color: white
+      background-color: transparent
+      transition-property: background-color, color
+      transition-duration: $transDurationOut, $transDurationOut * 2
+      transition-timing-function: ease-out, ease-out
+      
+      &:hover, &[href="/"]:hover
+        background-color: theme(tert-blend80)//theme(prim-tint30)
+        transition-duration: $transDurationIn, $transDurationIn * 2
+        color: white//theme(secondary)
+
+    .as-icon
+      top: -$iconSize * 0.1
+      margin-left: 0.8em
+      margin-right: $viewEdgePos
+      +corners(50%)
+      background-color: transparent
+      transition: background-color $transDurationOut ease-out
+
+      &:hover
+        background-color: theme(tert-blend80)//theme(prim-blend80)
+        transition-duration: $transDurationIn
+
+        a
+          background-color: transparent
+
+@media only screen and (min-width: $desktopWidth)
+  nav
+    ul
+      padding: $contentPadding / 3
+
+    a
+      padding: 0.2em 3em
+      font-size: 1.2rem
+
+@media only screen and (min-width: $maxWidth)
+  nav
+    a
+      padding: 0.2em 3em
+      font-size: 1.6rem
+      

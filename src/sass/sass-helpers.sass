@@ -1,0 +1,169 @@
+/*
+ * SASS helper mixins, functions and classes.
+ */
+
+//—————————————————————————————————————————————: COLOURS
+@function tint($colour, $percentage)
+  @return mix($colour, white, $percentage)
+
+@function shade($colour, $percentage)
+  @return mix($colour, black, $percentage)
+
+//—————————————————————————————————————————————: MATHS
+@function pow($x, $n)
+  $ret: 1
+
+  @if $n >= 0
+    @for $i from 1 through $n
+      $ret: $ret * $x
+
+  @else
+    @for $i from $n to 0
+      $ret: $ret / $x
+
+  @return $ret
+
+@function toFixed($float, $precision: 2)
+  $pow: pow(10, $precision)
+  @return round($float * $pow) / $pow
+
+//—————————————————————————————————————————————: GRIDS
+$gridTotalWidth:    100%
+$gridGutter:        0.5%
+
+@function gridWidth($numOfColumns, $gutter: $gridGutter, $padded: 0)
+  @return ($gridTotalWidth - ($numOfColumns * ($gutter * 2))) / $numOfColumns - (2 * $padded)
+
+
+$numOfColumns: 12
+$columnRMargin:  6%
+
+@function columnsToSpan($span, $colMargin: $columnRMargin)
+  @return ($span / $numOfColumns) * (100 + $colMargin) - $colMargin
+
+
+$cellGutter: 4.55%
+
+=cellSpanWidths($gutter: $cellGutter)
+  @for $c from 1 through $numOfColumns - 1
+    &.cell-span#{$c}
+      width: floor((($c / $numOfColumns) * 100) - $gutter)
+      //width: columnsToSpan($c, $gutter)
+
+//—————————————————————————————————————————————: CORNERS
+$cornerRadius: 0.2em !default
+
+=corners($radius: $cornerRadius)
+  -webkit-border-radius:  $radius
+  border-radius:          $radius
+
+//—————————————————————————————————————————————: BOX SHADOW
+// values: xSize ySize blur spread colour
+
+=boxShadow($values: 0.5em 0.5em 1em 0 #555)
+  -webkit-box-shadow: $values
+  box-shadow:         $values
+
+//—————————————————————————————————————————————: GRADIENT FILL
+=gradientBackground($from: #fff, $to: #000)
+  background-image: -webkit-linear-gradient(top, $from, $to)
+  background-image: linear-gradient(to bottom, $from, $to)
+
+//—————————————————————————————————————————————: TRANSFORM
+=transformThis($function)
+
+  -webkit-transform:  $function
+  //-moz-transform:     $function
+  -ms-transform:      $function
+  //-o-transform:       $function
+  transform:          $function
+
+//—————————————————————————————————————————————: TRANSITIONS
+=transitionThis($rules: all, $duration: $transDuration, $easing: ease-out, $delay: 0s)
+  -webkit-transition: if(transform == $rules, -webkit-transform, $rules) $duration $easing $delay
+  -moz-transition:    $rules $duration $easing $delay
+  -o-transition:      $rules $duration $easing $delay
+  transition:         $rules $duration $easing $delay
+
+=transitionDuration($duration: 1s)
+  -webkit-transition-duration: $duration
+  -moz-transition-duration:    $duration
+  -o-transition-duration:      $duration
+  transition-duration:         $duration
+
+//—————————————————————————————————————————————: HIDDEN
+=visuallyHidden
+  border: 0
+  clip: rect(0 0 0 0)
+  height: 1px
+  margin: -1px
+  overflow: hidden
+  padding: 0
+  position: absolute
+  width: 1px
+
+.visually-hidden
+  +visuallyHidden
+
+//—————————————————————————————————————————————: NO SELECT
+=nonSelect
+  -webkit-touch-callout:  none
+  -webkit-user-select:    none
+  -khtml-user-select:     none
+  -moz-user-select:       none
+  -ms-user-select:        none
+  user-select:            none
+
+//—————————————————————————————————————————————: PRINT
+.print-only
+  display: none
+
+//—————————————————————————————————————————————: PARENT WITH FLOATED ELEMENTS
+=withFloats
+  &:after
+    content: ' '
+    display: table
+    clear: both
+
+.with-floats
+  +withFloats
+
+//—————————————————————————————————————————————: Inline bullets
+=inlineBullets
+  display: inline-block
+  margin: 0
+  padding: 0
+  vertical-align: top
+
+  &:after
+    display: inline-block
+    vertical-align: top
+    content: '•'
+    margin: 0
+    padding: 0 0.4em 0 0.6em
+    color: dimgrey
+
+  &:last-of-type:after
+    display: none
+
+//—————————————————————————————————————————————: INTERFACE ARROWS
+
+=arrowUp($arrowWidth, $arrowHeight, $arrowColour: black)
+  border-style: solid
+  border-width: 0 ($arrowWidth / 2) $arrowHeight  ($arrowWidth / 2)
+  border-color: transparent transparent $arrowColour transparent
+
+=arrowRight($arrowWidth, $arrowHeight, $arrowColour: black)
+  border-style: solid
+  border-width: ($arrowHeight / 2) 0 ($arrowHeight / 2) $arrowWidth
+  border-color: transparent transparent transparent $arrowColour
+
+=arrowDown($arrowWidth, $arrowHeight, $arrowColour: black)
+  border-style: solid
+  border-width: $arrowHeight ($arrowWidth / 2) 0 ($arrowWidth / 2)
+  border-color: $arrowColour transparent transparent transparent
+
+=arrowLeft($arrowWidth, $arrowHeight, $arrowColour: black)
+  border-style: solid
+  border-width: ($arrowHeight / 2) $arrowWidth ($arrowHeight / 2) 0
+  border-color: transparent $arrowColour transparent transparent

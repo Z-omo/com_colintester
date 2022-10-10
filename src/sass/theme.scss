@@ -1,0 +1,42 @@
+/*
+ * SCSS theme colours for colintester.com
+ */
+
+//—————————————————————————————————————————————: Base colours
+// $primary:  #4464ad;
+// $secondary:#161925;
+// $tertiary: #23395b;
+
+// $primary:  #3a6ce0;
+// $secondary:#32292f;
+// $tertiary: #575366;
+
+$primary:  #259cf7;
+$secondary:#31393c;
+$tertiary: #493b2a;
+
+//—————————————————————————————————————————————: Theme collection
+$colours: (
+  primary:      $primary,
+  prim-blend80: rgba($primary, 0.8),
+  prim-blend20: rgba($primary, 0.2),
+  prim-tint50:  tint($primary, 50%),
+  prim-tint30:  tint($primary, 30%),
+  prim-tint10:  tint($primary, 10%),
+
+  secondary:    $secondary,
+  sec-blend80:  rgba($secondary, 0.8),
+  sec-blend20:  rgba($secondary, 0.2),
+  sec-tint50:   tint($secondary, 50%),
+
+  tertiary:     $tertiary,
+  tert-blend80: rgba($tertiary, 0.8),
+  tert-blend20: rgba($tertiary, 0.2),
+  tert-tint50:  tint($tertiary, 50%),
+  main:         rgba(white, 0.9)
+);
+
+@function theme($propertyName: primary)
+{
+  @return map-get($colours, $propertyName)
+}

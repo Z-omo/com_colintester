@@ -1,0 +1,210 @@
+/*
+ * SASS for article collection views – colintester.com
+ */
+
+.articles
+  position: relative
+  margin: 0 0 $contentMargin
+
+  @media only screen and (min-width: $tabletWidth)
+    display: flex
+    flex-flow: row wrap
+    justify-content: center
+
+  article
+    display: block
+    position: relative
+    box-sizing: border-box
+    margin: 0 0 0 -#{$contentPadding}
+    padding: 0
+    border-bottom: solid 1px theme(sec-blend20)
+    width: 100vw
+    min-height: 6rem
+    background-color: transparent
+    overflow: hidden
+    transition: background-color $transDurationOut ease-out
+
+    @media only screen and (min-width: $tabletWidth)
+      //box-shadow: 0 0 0 1px rgba(theme(secondary), 0.05)
+      border: solid 1px rgba(theme(secondary), 0.08)
+      +corners
+      margin: 0 ($contentMargin / 4) ($contentMargin / 2)
+      width: 47.3%
+      min-height: 12rem
+
+      // for browsers with no flex support:
+      display: inline-block
+
+    @media only screen and (min-width: $desktopWidth)
+      width: 30%
+      min-height: 16rem
+  
+    @media only screen and (min-width: $maxWidth)
+      width: 24%
+      min-height: 20rem
+
+    a
+      display: block
+      box-sizing: border-box
+      padding: $contentPadding / 3 $contentPadding / 2
+      text-decoration: none
+      border: none
+      width: 100%
+      height: 100%
+
+    header
+      position: relative
+      margin: 0 0 $contentMargin / 2
+
+      time
+        font-size: 0.9rem
+    
+    h1
+      margin: 0
+      padding: 0
+      font-size: 1.2rem
+      line-height: 1.5rem
+      color: theme(secondary)
+      
+      @media only screen and (min-width: $tabletWidth)
+        font-size: 1.4rem
+        line-height: 1.8rem
+
+      @media only screen and (min-width: $desktopWidth)
+        font-size: 1.8rem
+        line-height: 2.2rem
+
+    p
+      margin: 0
+
+  
+    &.with-image
+      min-height: 16rem
+      border-bottom: none
+
+      @media only screen and (min-width: $tabletWidth)
+        min-height: 16rem
+
+      a
+        min-height: inherit
+        background-repeat: no-repeat
+        background-position: center center
+        background-size: cover
+
+      header
+        position: absolute
+        bottom: 0
+        left: 0
+        margin: 0
+        box-sizing: border-box
+        padding: $contentPadding / 3 $contentPadding / 2
+        width: 100%
+        color: white
+        text-shadow: $textShadow
+        //+gradientBackground(theme(sec-blend20), theme(sec-blend80))
+        +gradientBackground(rgba(theme(secondary), 0.05), theme(sec-blend80))
+        transition: background-color $transDurationOut ease-out
+
+        h1
+          color: inherit
+
+    &.with-image:hover header
+      transition-duration: $transDurationIn
+      background-color: theme(prim-blend80)
+
+    &:hover
+      background-color: theme(prim-blend20)
+      transition-duration: $transDurationIn
+
+    &.image-only
+      //box-shadow: none
+      border: none
+
+      a
+        background-size: contain
+
+      header
+        opacity: 0
+
+//—————————————————————————————————————————————: Side bar collection
+.side-bar .articles
+
+  @media only screen and (min-width: $desktopWidth)
+    display: block
+
+    article
+      margin: 0 0 $contentMargin / 2 0
+      width: 100%
+      border-top-style: none
+      border-right-style: none
+      border-left-style: none
+
+      &:not(.with-image)
+        min-height: auto
+
+      h1
+        font-size: $headingFontSize
+
+//—————————————————————————————————————————————: Post view
+.post
+  > header
+    margin: 0 0 $contentMargin
+    font-size: 0.9rem
+
+    dl
+      margin: 0
+      padding-bottom: $contentPadding / 2
+      border-bottom: 1px solid theme(tert-blend20)
+
+    dt
+      width: auto
+
+      @media only screen and (min-width: 320px)
+        width: 32%
+        max-width: 112px
+
+      // @media only screen and (min-width: $tabletWidth)
+      //   width: auto
+ 
+    dd
+      width: 64%
+
+
+    // dt::before
+    //   content: '• '
+    //   display: inline
+    //   margin-right: 0.2em
+    //   //white-space: pre
+    //   color: theme(primary)
+
+    dt, dd
+      margin: 0 0.2rem 0 0 
+      display: inline-block
+
+      @media only screen and (max-width: 319px)
+        display: block
+      
+      @media only screen and (min-width: $tabletWidth)
+        width: auto
+
+    @media only screen and (min-width: $tabletWidth)
+      dd
+        margin-right: 1rem
+    // dt:first-child
+    //   clear: none
+
+      // &::before
+      // content: ''      
+
+  > footer
+    margin: 0 0 $contentMargin -#{$contentPadding}
+
+    width: 100vw
+    min-height: auto
+    background-color: theme(tert-blend80)
+
+    @media only screen and (min-width: $tabletWidth)
+      margin: 0 0 $contentMargin
+      padding: $contentPadding / 2
+      +corners
+      width: auto

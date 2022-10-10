@@ -1,0 +1,107 @@
+/*
+ * SASS for HTML form elements – colintester.com
+ */
+
+form
+  margin: 0 0 $contentMargin
+  padding: 0
+
+  @media only screen and (min-width: $tabletWidth)
+    max-width: $maxContentWidth / 1.5
+    min-width: 580px
+
+fieldset
+  position: relative
+  top: 0
+  left: 0
+  box-sizing: border-box
+  margin: 0 0 0 -#{$contentPadding}
+  border: none
+  border-top: solid 1px theme(prim-blend20)
+  padding: $contentPadding
+  width: 100vw
+  background-color: white
+
+  &:first-of-type
+    border: none
+
+  @media only screen and (min-width: $tabletWidth)
+    margin-bottom: $contentMargin / 2
+    margin-left: 0
+    border: none
+    +corners
+    width: auto
+    background-color: theme(tert-blend20)
+
+  button
+    margin: 0
+
+legend
+  float: left // Required to prevent legend vertical position
+  width: 100%
+  margin: 0 0 ($contentMargin / 2)
+  padding: 0
+  font-size: $contentFontSize * 1.2
+  line-height: $contentFontSize * $gRatio
+
+input, textarea, select
+  font-family: $contentFont
+  font-size: 16px
+  color: theme(sec-blend80)
+
+  &:focus
+    outline: none
+    box-shadow: 0 0 3px 1px theme(tert-blend80)
+
+label
+  display: block
+
+//—————————————————————————————————————————————: Input wrappers
+.text
+  margin: 0 0 $contentMargin / 2
+
+  input
+    margin: 0
+    +corners
+    border: solid 1px theme(tert-tint50)
+    padding: 0.4rem
+    -webkit-appearance: none // iOS views.
+    width: 97%
+
+.checkbox
+  margin: 0 0 $contentMargin / 2
+
+  label, input
+    display: inline
+    vertical-align: top
+    box-shadow: none
+
+  label
+    display: inline-block
+    width: 86%
+
+  input
+    margin: $bodyContentLineHeight / 4 $contentFontSize / 2 0 0
+
+//—————————————————————————————————————————————: Required
+.required
+  > label:after
+    display: inline-block
+    vertical-align: top
+    content: '•'
+    margin-top: -0.5rem
+    margin-left: 0.3rem
+    font-size: $contentFontSize * ($gRatio * 1.6)
+    font-weight: bold
+    color: theme(prim-tint50)
+
+  &.required-notice
+    margin: ($contentPadding / 3) 0 0
+    text-align: right
+
+//—————————————————————————————————————————————: Buttons
+button[type=submit]
+  margin: 0 auto
+  
+  @media only screen and (min-width: $tabletWidth)
+    float: right

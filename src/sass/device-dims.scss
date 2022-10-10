@@ -1,0 +1,85 @@
+/*
+ * SASS definitions for RWD view device dimensions.
+ */
+
+$rwdDeviceDims: (
+  mobile: (
+    width:      388, 
+    height:     795,
+    vpWidth:    320,
+    vpHeight:   530,
+    vpVertPos:  137,
+    vpHorizPos: 32
+  ),
+  // need to use dims where the websites actually switch to tablet views:
+  tablet: (
+    width:      820,//648, 
+    height:     1131,//897,
+    vpWidth:    728,
+    vpHeight:   910,
+    vpVertPos:  142,
+    vpHorizPos: 44    
+  ),
+  desktop: (
+    width:      1417, 
+    height:     880,
+    vpWidth:    1417,
+    vpHeight:   806,
+    vpVertPos:  74,
+    vpHorizPos: 0    
+  )
+);
+
+$rwdIFrameBorderWidth: 0;
+
+@mixin rwdIFrameRules($rwdMode, $span: 100%)
+{
+  @if map-has-key($rwdDeviceDims, $rwdMode)
+  {
+    $rwdDims: map-get($rwdDeviceDims, $rwdMode);
+    $width: map-get($rwdDims, width);
+    $height: map-get($rwdDims, height);
+
+    $borderWidth: 3;
+    @if desktop == $rwdMode { $borderWidth: 0; }
+
+    position: absolute;
+    top: $span * (map-get($rwdDims, vpVertPos) / $height);
+    left: $span * ((map-get($rwdDims, vpHorizPos) - $borderWidth) / $width);
+    width: $span * (map-get($rwdDims, vpWidth) / ($width - $rwdIFrameBorderWidth));
+    height: $span * (map-get($rwdDims, vpHeight) / $height);
+    
+    @if 0 == $borderWidth
+    {
+      border: none;
+    } @else {
+      border: solid #{$borderWidth}px black;
+    }
+  }
+
+  @else
+  {
+    @warn "Sorry, the device name: `#{$rwdMode}` is not defined in map $rwdDeviceDims."
+  }
+}
+
+@mixin rwdDeviceRules($rwdMode, $rwdWidth: 100vw)
+{
+  @if map-has-key($rwdDeviceDims, $rwdMode)
+  {
+    $rwdDims: map-get($rwdDeviceDims, $rwdMode);
+    $width: map-get($rwdDims, width);
+    $height: map-get($rwdDims, height);
+    $aspectRatio: $height / $width;
+
+    width: $rwdWidth;
+    height: calc(#{$rwdWidth} * #{$aspectRatio});
+    max-width: #{$width}px;
+    max-height: #{$height}px;
+  }
+
+  @else
+  {
+    @warn "Sorry, the device name: `#{$rwdMode}` is not defined in map $rwdDeviceDims."
+  }
+}

@@ -1,0 +1,242 @@
+/*
+ * SASS for text content elements – colintester.com
+ */
+
+html
+  font-size: $baseFontSize
+
+body
+  font-family: $contentFont
+  font-size: $contentFontSize
+  line-height: $bodyContentLineHeight
+  color: theme(secondary)
+
+$headingFontSize: $contentFontSize * $gRatio
+$headingLineHeight: ($contentFontSize * $gRatio) * $gRatio
+
+h1, h2, h3, .statement
+  margin: 0 0 $contentMargin
+  font-family: $headingFont
+  font-size: $headingFontSize
+  line-height: $headingLineHeight
+  font-weight: 700
+  color: theme(secondary)
+
+.statement
+  color: theme(tert-blend80)
+
+p, ul , ol
+  margin: 0 0 $bodyContentLineHeight
+  
+//—————————————————————————————————————————————: Links
+main a
+  position: relative
+  color: theme(tertiary)
+  text-decoration: none
+
+main
+  p, li, dd
+    a::after
+      content: ''
+      position: absolute
+      bottom: 0.1rem
+      left: 0
+      width: 100%
+      border-bottom: dotted 1px theme(primary)
+
+    a:hover::after
+      border-bottom-style: solid
+
+footer a
+  color: white
+
+
+//—————————————————————————————————————————————: Lists
+=bulletPoint
+  content: '\2022'
+  display: inline-block
+  margin: 0 0.5rem 0 -1rem
+  vertical-align: middle
+  font-family: sans-serif
+  color: theme(tert-blend80)//theme(primary)
+  font-size: $contentFontSize * 1.8
+  line-height: $contentFontSize * 1.8
+
+ul, ol
+  padding: 0 0 0 $contentPadding / 2
+
+ul
+  margin-left: 0
+  list-style: none
+
+  @media only screen and (min-width: $tabletWidth)
+    margin-left: $contentPadding / 2
+
+p + ul, p + ol
+  margin-top: -0.4rem
+
+main ul li:before
+  +bulletPoint
+
+li
+  margin: 0 0 $contentMargin / 3
+  padding: 0
+
+  dd &
+    margin-bottom: 0
+
+dl
+  margin: 0 0 $contentMargin
+  padding: 0
+
+dt
+  font-weight: bold
+
+dd
+  margin: 0
+  padding: 0
+
+  ul
+    margin-left: 0
+
+ol
+  list-style: none
+  counter-reset: orderedListCounter
+
+  // counter reset when ‘start’ attribute is used:
+  @for $start from 1 through 10
+    &[start="#{$start}"]
+      counter-reset: orderedListCounter #{$start - 1}
+
+  > li
+    position: relative
+    padding-left: 1rem
+
+    &::before
+      content: counter(orderedListCounter)
+      counter-increment: orderedListCounter
+      position: absolute
+      top: 0
+      left: -($contentPadding / 2)
+      +corners(50%)
+      padding: 0.3em
+      width: 1rem
+      height: 1rem
+      background-color: theme(tert-blend80)//theme(prim-tint50)
+      font-size: 1rem
+      line-height: 0.8rem
+
+      text-align: center
+      color: white//theme(secondary)
+
+//—————————————————————————————————————————————: Quotes
+q
+  quotes: '\201C' '\201D' '\2018' '\2019'
+  
+q::before, q::after
+  color: theme(tert-blend80)//theme(sec-blend80)
+  font-family: $headingFont
+  font-size: 1.4em
+  line-height: 1em
+  
+q::before
+  content: open-quote
+
+q::after
+  content: close-quote
+
+blockquote
+  $quoteLineHeight: 2rem
+  
+  margin: $contentMargin 0
+  width: 100%
+  font-family: $headingFont
+  font-size: $contentFontSize * 1.1
+  font-style: italic
+  line-height: $quoteLineHeight
+  
+  &:first-child
+    margin-top: $contentMargin
+    
+  @media only screen and (min-width: $tabletWidth)
+    width: 80%
+    margin-left: $contentMargin
+    text-align: left
+
+  @media only screen and (min-width: $desktopWidth)
+    max-width: 450px
+        
+  q::before, q::after
+    display: inline // should always be inline so that they wrap with the text.
+    font-size: 3.6rem // needs to be rem for IE to render size consistently.
+    line-height: $quoteLineHeight / 2
+    font-weight: normal
+    font-style: normal
+    vertical-align: middle
+
+  q::before
+    margin: 0 0.1em 0 0
+  q::after
+    margin: 0 0 0 0.1em
+
+  .by-line
+    display: block
+    margin: $contentMargin / 2 0 0
+    font-style: normal
+    font-size: 0.8em
+    line-height: 0.8em * $gRatio
+    font-weight: bold
+      
+  &.long-format
+    font-family: $contentFont
+    font-size: $contentFontSize * 0.92
+    line-height: $bodyContentLineHeight
+    font-weight: normal
+    font-style: normal
+    max-width: $maxContentWidth - ($contentMargin * 8)
+
+    q::before, q::after
+      font-size: 2.6rem
+
+//—————————————————————————————————————————————: Selection
+::-moz-selection
+  background: theme(primary)
+  text-shadow: none
+  color: white
+
+::selection
+  background: theme(primary)
+  text-shadow: none
+  color: white
+
+//—————————————————————————————————————————————: Special cases
+.hilite
+  $hiliteFontSize: ($contentFontSize * $gRatio) * 2
+  font-size: $hiliteFontSize
+  line-height: $hiliteFontSize
+  letter-spacing: -1pt
+  color: theme(primary)
+
+.copyright
+  position: relative
+  display: inline-block
+  vertical-align: middle
+  margin: 0 0.2em 0 0
+  +corners(50%)
+  padding: 0
+  font-family: $contentFont
+  font-size: 2rem
+  font-weight: normal
+
+  &::after
+    content: ''
+    position: absolute
+    top: 50%
+    left: 50%
+    +corners(50%)
+    z-index: -1
+    width: 1.24rem
+    height: 1.24rem
+    +transformThis(translate(-50%, -50%))
+    background-color: theme(prim-blend80)
+  

@@ -1,0 +1,141 @@
+/*
+ * SASS for body elements - colintester.com
+ */
+html
+  margin: 0
+  height: 100%
+  background-color: black
+
+body
+  margin: 0
+  padding: 0
+  height: 100%
+
+  @media only screen and (min-width: $desktopWidth)
+   overflow-y: scroll
+
+.boundary
+  position: relative
+  top: 0
+  left: 0
+  margin: 0 auto
+  max-width: $maxWidth
+  background-color: white
+  z-index: 1
+
+  @media only screen and (min-width: $maxWidth)
+    +corners(0 0 $cornerRadius $cornerRadius)
+  
+main
+  position: relative
+  box-sizing: border-box
+  margin: 0 auto
+  padding: $contentPadding
+  min-height: 40vh
+  max-width: $maxMainElementWidth
+  background-color: theme(main)
+  z-index: 1
+
+  @media only screen and (min-width: $maxMainElementWidth)
+    +corners
+    margin-bottom: ($contentMargin * 2)
+
+    .home &
+      &::after
+        content: ''
+        position: absolute
+        top: 10%
+        right: 45%
+        height: 80%
+        border-right: solid 1px theme(prim-blend20)
+
+.content
+  margin: 0// 0 $contentMargin
+  max-width: $desktopWidth
+
+  header, footer, h1, h2, h3, p, ul, ol, code//, .float-group
+    max-width: $maxContentWidth
+
+  .float-group
+    overflow: hidden // expand to height of floated children.
+
+.side-bar
+  figure
+    margin: 0
+    padding: 0
+    width: 90%
+    min-width: 170px
+    max-width: 320px
+
+    @media only screen and (min-width: $tabletWidth)
+      margin: 0 auto
+      width: 71.2%
+
+  figcaption
+    margin: 0 0 $contentMargin
+
+  img
+    display: block
+    margin: 0
+    +corners
+    //border: solid 0.4rem theme(sec-blend80)
+    border: solid 0.2rem theme(tert-blend80)
+    width: 100%
+
+  figcaption
+    padding: 0.4em
+    font-size: 0.9rem
+
+@media only screen and (min-width: $tabletWidth)
+  .content
+    display: inline-block
+    vertical-align: top
+    box-sizing: border-box
+    margin: 0 -2px
+    padding: 0 (2 * $contentPadding) 0 0
+
+    .collection &, .work-example &
+      padding-right: 0
+      width: 100%
+      max-width: none
+
+  .home .content
+    width: 70%
+
+  .home .side-bar
+    display: inline-block
+    vertical-align: top
+    box-sizing: border-box
+    margin: 0 auto
+    padding: 0
+    width: 29.9%
+    max-width: 320px
+
+    transform: translateY(-20%)
+
+@media only screen and (min-width: $desktopWidth)
+  .content
+    padding-left: $contentPadding
+
+    .work-example &
+      padding-right: (2 * $contentPadding)
+      width: 75%
+
+  .side-bar
+    display: inline-block
+    vertical-align: top
+    margin: 0 2.5%
+    width: 20%
+
+.boxed
+  border-top: solid 1px theme(sec-blend20)
+  padding: $contentPadding 0
+
+  @media only screen and (min-width: $tabletWidth)
+    +corners
+    border: solid 1px theme(sec-blend20)
+    padding: $contentPadding
+
+@media only screen and (min-width: $tabletWidth)
+  .mobile-only
+    display: none

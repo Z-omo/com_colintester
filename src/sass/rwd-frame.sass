@@ -1,0 +1,91 @@
+/*
+ * SASS for supportng an iframe used to display RWD views.
+ */
+
+@import "device-dims"
+
+.rwd-view
+  position: relative
+  margin: $contentMargin 0
+
+$iFrameScrollBarWidth: 20
+
+.rwd-device // <figure>
+  position: relative
+  top: 0
+  left: 0
+  margin: 0
+  padding: 0
+  overflow: hidden
+  
+  .rwd-mobile &
+    +rwdDeviceRules(mobile)
+
+  .rwd-tablet &
+    +rwdDeviceRules(tablet)
+
+  .rwd-desktop &
+    +rwdDeviceRules(desktop, 100vw)
+    transform: scale(0.86)
+    box-shadow: 0px 0px 0px 1px rgba($primary, 0.2)
+  
+    @media only screen and (min-width: $desktopWidth)
+      +rwdDeviceRules(desktop, 90vw)
+      transform: scale(0.658)
+      +corners
+
+  transform-origin: 0 0
+  transform: scale(0.62)
+  transition: all $transDurationIn * 2 $easeSpecial
+
+  @media only screen and (min-width: $tabletWidth)
+    margin: 0
+
+  &::before // device skin
+    content: ''
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: 2
+
+    background-repeat: no-repeat
+    background-position: left top
+    background-size: 100% 100%
+    pointer-events: none
+
+    .rwd-mobile &
+      background-image: url('#{$imagePath}iphone-frame.png')
+
+    .rwd-tablet &
+      background-image: url('#{$imagePath}ipad-frame.png')
+
+    .rwd-desktop &
+      background-size: 100% auto
+      background-image: url('#{$imagePath}browser-frame.png')
+
+//—————————————————————————————————————————————: iframe element
+.rwd-view-frame
+  background-color: white
+
+  .rwd-mobile &
+    +rwdIFrameRules(mobile)
+
+  .rwd-tablet &
+    +rwdIFrameRules(tablet)
+
+  .rwd-desktop &
+    +rwdIFrameRules(desktop)
+  
+.rwd-view-controls
+  display: none
+  margin: 0 0 $contentMargin
+  
+  button
+    display: inline-block
+    vertical-align: top
+    margin: 0 0.8em 0 0
+  
+  .focus-js &
+    display: block
