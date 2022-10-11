@@ -133,3 +133,13 @@
 
     @media only screen and (min-width: $desktopWidth)
       background-image: url('#{$headerImagePath}large/header-image-spring.jpg')
+
+  .articles-page &
+    .page-header-image
+      background-image: url('#{$headerImagePath}small/colin-tester-blog-header.jpg')
+
+      @media only screen and (min-width: $tabletWidth)
+        background-image: url('#{$headerImagePath}medium/colin-tester-blog-header.jpg')
+
+      @media only screen and (min-width: $desktopWidth)
+        background-image: url('#{$headerImagePath}large/colin-tester-blog-header.jpg')

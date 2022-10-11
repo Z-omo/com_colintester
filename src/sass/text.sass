@@ -11,6 +11,7 @@ body
   line-height: $bodyContentLineHeight
   color: theme(secondary)
 
+//—————————————————————————————————————————————: Headings
 $headingFontSize: $contentFontSize * $gRatio
 $headingLineHeight: ($contentFontSize * $gRatio) * $gRatio
 
@@ -21,7 +22,12 @@ h1, h2, h3, .statement
   line-height: $headingLineHeight
   font-weight: 700
   color: theme(secondary)
-
+  scroll-margin-top: 5rem
+  
+.focus-js main > h1
+  +visuallyHidden
+  
+//—————————————————————————————————————————————: Block text
 .statement
   color: theme(tert-blend80)
 

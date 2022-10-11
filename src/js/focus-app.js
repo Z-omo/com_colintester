@@ -28,11 +28,11 @@ const focus = {
   {
     setViewParams();
     setJSMode();    
-    if (true === focus.view.smallView) { setupMobileMenu(); }
-
+    focus.view.smallView && setupMobileMenu();
+    !focus.view.home && setupHeaderTitle();
     setupEvents();
     setupLazyLoad();
-    if (false === focus.view.smallView) { setupRWDViews(); }
+    !focus.view.smallView && setupRWDViews();
   }
 }
 
@@ -50,6 +50,7 @@ function setViewParams()
   let vpMobileMax = focus.view.smallViewEM * vpFontSize;
 
   focus.view.smallView = vpWidth < vpMobileMax;
+  focus.view.home = DOM.hasClass('home', DOM.body);
 }
 
 function setJSMode()
@@ -75,6 +76,19 @@ function setupMobileMenu()
   // home.addEventListener('click', () => window.location.href = './');
 
   focus.view.nav = nav;
+}
+
+function setupHeaderTitle() {
+  console.log('setupHeaderTitle');
+  // find main content title:
+  const t = document.querySelector('main > h1');
+  if (!t) { return; }
+
+  // update header title:
+  const ht = document.querySelector('.boundary > header h2');
+  if (!ht) { return; }
+
+  ht.innerHTML = t.innerHTML;
 }
 
 function setupEvents()

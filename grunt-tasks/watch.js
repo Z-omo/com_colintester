@@ -12,6 +12,16 @@ module.exports = function(grunt) {
     sass: {
       files: `${config.srcPath}sass/*.{scss,sass}`,
       tasks: ['sass:dev']
+    },
+
+    pageCommonContent: {
+      files: `${config.srcPath}html/*.html`,
+      tasks: ['replace:insertHTML'],
+      options: { livereload: false }
+    },
+
+    html: {
+      files: `${config.devPath}**/*.html`,
     }
   }
 
