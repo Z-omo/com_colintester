@@ -11,7 +11,7 @@
 
   @media only screen and (min-width: $tabletWidth)
     .home &
-      min-height: 320px
+      min-height: auto//320px
 
   .logo
     position: absolute
@@ -63,28 +63,33 @@
       font-size: 2.2rem
 
     @media only screen and (min-width: $tabletWidth)
-      max-width: ($headerTitleFontSize / $gRatio) * 24
+      //max-width: ($headerTitleFontSize / $gRatio) * 24
       font-size: 2.6rem
-      line-height: 2.8rem * $gRatio
+      line-height: 2.6rem * $gRatio
+
+      span
+        display: block
 
       .wf-active &
         font-size: 2.8rem
         letter-spacing: 0
 
     @media only screen and (min-width: $desktopWidth)
+      margin-top: $contentPadding * 1.25
       padding-left: $contentPadding
-      max-width: ($headerTitleFontSize / $gRatio) * 36
+      //max-width: ($headerTitleFontSize / $gRatio) * 36
       font-size: 2.98rem // for trebuchet
-      line-height: 2.6rem * $gRatio
+      line-height: 2.4rem * $gRatio
 
       .wf-active &
         font-size: 3rem
         letter-spacing: 0
 
     @media only screen and (min-width: $maxWidth)
-      max-width: ($headerTitleFontSize / $gRatio) * 48
+      //max-width: ($headerTitleFontSize / $gRatio) * 48
+      margin-top: $contentPadding * 1.5
       font-size: 3.96rem
-      line-height: 4rem * $gRatio
+      line-height: 3.4rem * $gRatio
 
       .wf-active &
         font-size: 4rem
