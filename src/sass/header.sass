@@ -125,21 +125,42 @@
       height: 10em
       +gradientBackground(transparent, white)
 
-  .page-header-image
-    background-image: url('#{$headerImagePath}small/header-image-spring.jpg')
+//—————————————————————————————————————————————: Page header images
+.page-header-image
+  background-image: url('#{$hdrImagePath}small/header-image-spring.jpg')
+
+  @media only screen and (min-width: $tabletWidth)
+    background-image: url('#{$hdrImagePath}medium/header-image-spring.jpg')
+
+  @media only screen and (min-width: $desktopWidth)
+    background-image: url('#{$hdrImagePath}large/header-image-spring.jpg')
+
+$pageHeaders: blog, about, work
+
+@each $hdr in $pageHeaders
+  .#{$hdr} .page-header-image
+    background-image: url('#{$hdrImagePath}small/colin-tester-#{$hdr}-header.jpg')    
 
     @media only screen and (min-width: $tabletWidth)
-      background-image: url('#{$headerImagePath}medium/header-image-spring.jpg')
+      background-image: url('#{$hdrImagePath}medium/colin-tester-#{$hdr}-header.jpg')
 
     @media only screen and (min-width: $desktopWidth)
-      background-image: url('#{$headerImagePath}large/header-image-spring.jpg')
+      background-image: url('#{$hdrImagePath}large/colin-tester-#{$hdr}-header.jpg')
 
-  .articles-page &
-    .page-header-image
-      background-image: url('#{$headerImagePath}small/colin-tester-blog-header.jpg')
+// .articles-page .page-header-image
+//   background-image: url('#{$hdrImagePath}small/colin-tester-blog-header.jpg')
 
-      @media only screen and (min-width: $tabletWidth)
-        background-image: url('#{$headerImagePath}medium/colin-tester-blog-header.jpg')
+//   @media only screen and (min-width: $tabletWidth)
+//     background-image: url('#{$hdrImagePath}medium/colin-tester-blog-header.jpg')
 
-      @media only screen and (min-width: $desktopWidth)
-        background-image: url('#{$headerImagePath}large/colin-tester-blog-header.jpg')
+//   @media only screen and (min-width: $desktopWidth)
+//     background-image: url('#{$hdrImagePath}large/colin-tester-blog-header.jpg')
+
+// .about .page-header-image
+//   background-image: url('#{$hdrImagePath}small/colin-tester-about-header.jpg')
+
+//   @media only screen and (min-width: $tabletWidth)
+//     background-image: url('#{$hdrImagePath}medium/colin-tester-about-header.jpg')
+
+//   @media only screen and (min-width: $desktopWidth)
+//     background-image: url('#{$hdrImagePath}large/colin-tester-about-header.jpg')
