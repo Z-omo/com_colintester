@@ -33,7 +33,11 @@ $colours: (
   tert-blend80: rgba($tertiary, 0.8),
   tert-blend20: rgba($tertiary, 0.2),
   tert-tint50:  tint($tertiary, 50%),
-  main:         rgba(white, 0.9)
+  main:         rgba(white, 0.9),
+
+  nav-BG:       rgba($tertiary, 0.96),
+  navText:      white,
+  navHoverText: $primary,
 );
 
 @function theme($propertyName: primary)

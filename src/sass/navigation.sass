@@ -20,14 +20,17 @@ nav
   
   a
     display: block
-    +corners(0.5em)
-    border: solid 1px theme(prim-blend20)
+    // +corners(0.5em)
+    // border: solid 1px theme(prim-blend20)
     padding: 0.8em 2em
     text-decoration: none
-    font-size: 1.2rem
-    color: theme(secondary)
+    font-family: $headingFont
+    font-size: 1.4rem
+    font-weight: bold
+    color: theme(navText)
+    //text-transform: uppercase
     text-align: center
-    background-color: theme(prim-tint50)
+    //background-color: theme(prim-tint50)
 
   .as-icon
     a
@@ -79,7 +82,7 @@ nav
     ul
       // see also .js-scrolled below.
       padding-top: $mobileRibbonHeight + ($contentPadding * 2)
-      background-color: theme(tert-blend80)//rgba($primary, 0.9)
+      background-color: theme(nav-BG)//rgba($primary, 0.9)
       transition-property: transform, opacity
       transition-duration: $transDurationIn, $transDurationIn
       transition-timing-function: $easeOutQuint, ease-in-out
@@ -88,7 +91,7 @@ nav
       opacity: 0
 
     &.open ul
-      transition-duration: $transDurationIn * 2, $transDurationIn * 2.8
+      transition-duration: $transDurationOut, $transDurationOut
       -webkit-transform: translateY(0%)
       transform: translateY(0%)
       opacity: 1
@@ -167,24 +170,32 @@ nav
       text-align: right
 
     li
-      margin: 0
+      margin: 0 $contentPadding
       padding: 0
       width: auto
 
       // for browsers with no flex support:
       display: inline-block
-      
-    .active a
-        background-color: theme(prim-blend80)
-        color: black
 
-    .active a[href="/"] // home page link
-      background-color: transparent
-      color: white
+      @media only screen and (min-width: $desktopWidth)
+        margin: 0 $contentPadding * 1.6
+
+      
+    // .active a
+    //     background-color: theme(prim-blend80)
+    //     color: black
+
+    // .active a[href="/"] // home page link
+    //   background-color: transparent
+    //   color: white
 
     a
+      display: inline
+      position: relative
+      top: 0
+      left: 01
       border: none
-      padding: 0 1.8em
+      padding: 0 $contentPadding / 4
       font-size: 1.1rem
       color: white
       background-color: transparent
@@ -193,9 +204,25 @@ nav
       transition-timing-function: ease-out, ease-out
       
       &:hover, &[href="/"]:hover
-        background-color: theme(tert-blend80)//theme(prim-tint30)
+        //background-color: theme(tert-blend80)//theme(prim-tint30)
         transition-duration: $transDurationIn, $transDurationIn * 2
         color: white//theme(secondary)
+
+      &::after
+        content: ''
+        position: absolute
+        bottom: -6px
+        left: 0
+        +corners
+        width: 100%
+        height: 6px
+        background-color: theme(navHoverText)
+        opacity: 0
+        transition: opacity $transDurationOut ease-out
+
+      &:hover:after
+        +transitionDuration($transDurationIn)
+        opacity: 1
 
     .as-icon
       top: -$iconSize * 0.1
@@ -218,12 +245,12 @@ nav
       padding: $contentPadding / 3
 
     a
-      padding: 0.2em 3em
-      font-size: 1.2rem
+      //padding: 0.2em 3em
+      font-size: 1.36rem
 
 @media only screen and (min-width: $maxWidth)
   nav
     a
-      padding: 0.2em 3em
+      //padding: 0.2em 3em
       font-size: 1.6rem
       
