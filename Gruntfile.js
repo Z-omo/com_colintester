@@ -12,4 +12,7 @@ module.exports = function(grunt) {
 
   // register task runs:
   grunt.registerTask('default', dev);
+
+  // Inserts (includes) page common HTML content:
+  grunt.registerTask('insertHTML', ['replace:insertHTML']);
 }
