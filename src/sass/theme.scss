@@ -14,9 +14,11 @@
 $primary:  #259cf7;
 $secondary:#31393c;
 $tertiary: #493b2a;
+$dark:     #1e2122;
 
 //—————————————————————————————————————————————: Theme collection
 $colours: (
+  dark:         $dark,
   primary:      $primary,
   prim-blend80: rgba($primary, 0.8),
   prim-blend20: rgba($primary, 0.2),
@@ -25,6 +27,7 @@ $colours: (
   prim-tint10:  tint($primary, 10%),
 
   secondary:    $secondary,
+  sec-blend90:  rgba($secondary, 0.9),
   sec-blend80:  rgba($secondary, 0.8),
   sec-blend20:  rgba($secondary, 0.2),
   sec-tint50:   tint($secondary, 50%),
@@ -35,7 +38,7 @@ $colours: (
   tert-tint50:  tint($tertiary, 50%),
   main:         rgba(white, 0.9),
 
-  nav-BG:       rgba($tertiary, 0.96),
+  nav-BG:       rgba($secondary, 0.96),
   navText:      white,
   navHoverText: $primary,
 );

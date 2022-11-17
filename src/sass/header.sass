@@ -2,6 +2,9 @@
  * SASS for page header element – colintester.com
  */
 .boundary > header
+  // position: relative
+  // top: 0
+  // left: 0
   padding: ($contentPadding * 2) $contentPadding $contentPadding
   box-sizing: border-box
   width: 100%
@@ -13,6 +16,16 @@
     .home &
       min-height: auto//320px
 
+  // @media only screen and (min-width: $desktopWidth)
+  //   &::before
+  //     content: ''
+  //     position: absolute
+  //     top: 0
+  //     left: 0
+  //     width: 100%
+  //     height: 25%
+  //     background-color: white
+      
   .logo
     position: absolute
     top: $viewEdgePos
