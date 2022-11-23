@@ -139,14 +139,16 @@
       +gradientBackground(transparent, white)
 
 //—————————————————————————————————————————————: Page header images
+$defaultHeaderImage: 'header-image.jpg'//'header-image-spring.jpg'
+
 .page-header-image
-  background-image: url('#{$hdrImagePath}small/header-image-spring.jpg')
+  background-image: url('#{$hdrImagePath}small/#{$defaultHeaderImage}')
 
   @media only screen and (min-width: $tabletWidth)
-    background-image: url('#{$hdrImagePath}medium/header-image-spring.jpg')
+    background-image: url('#{$hdrImagePath}medium/#{$defaultHeaderImage}')
 
   @media only screen and (min-width: $desktopWidth)
-    background-image: url('#{$hdrImagePath}large/header-image-spring.jpg')
+    background-image: url('#{$hdrImagePath}large/#{$defaultHeaderImage}')
 
 $pageHeaders: blog, about, work
 
