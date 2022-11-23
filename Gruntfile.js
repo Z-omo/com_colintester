@@ -7,7 +7,7 @@ module.exports = function(grunt) {
   grunt.initConfig(gruntConfig);
   grunt.loadTasks('grunt-tasks');
 
-  // define task runs:
+  // define development task runs:
   const dev = ['sass:dev', 'browserify:dev', 'watch'];
 
   // register task runs:
@@ -15,4 +15,9 @@ module.exports = function(grunt) {
 
   // Inserts (includes) page common HTML content:
   grunt.registerTask('insertHTML', ['replace:insertHTML']);
+
+  // define and register public site build tasks:
+  const build = ['shell:build', 'sass:build', 'browserify:build'];
+  grunt.registerTask('build', build);
+
 }

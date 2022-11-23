@@ -6,10 +6,18 @@ module.exports = function(grunt) {
       transform: [['babelify', { presets: ['@babel/preset-env'] }]],
       debug: true
     },
+
     dev: {
       files: [{
         src: `${config.srcPath}js/index.js`,
         dest: `${config.devPath}js/${config.buildName}.js`
+      }]
+    },
+
+    build: {
+      files: [{
+        src: `${config.srcPath}js/index.js`,
+        dest: `${config.buildPath}js/${config.buildName}.js`
       }]
     }
   }

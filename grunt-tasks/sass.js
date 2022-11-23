@@ -8,6 +8,14 @@ module.exports = function(grunt) {
         src:  `${config.srcPath}sass/bootstrap.sass`,
         dest: `${config.devPath}css/${config.buildName}.css`
       }]
+    },
+
+    build: {
+      options: { style: 'compressed', sourcemap: 'none' },
+      files: [{
+        src:  `${config.srcPath}sass/bootstrap.sass`,
+        dest: `${config.buildPath}css/${config.buildName}.css`
+      }]
     }
   }
 

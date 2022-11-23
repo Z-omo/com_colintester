@@ -1,0 +1,12 @@
+# rsync file filter – used with build task to update ./www/ public folder.
+# -- Public pages and folders:
+
+# ignore: development space resources.
+- .DS_Store
+- .git
+- .gitignore
+- .sass-cache
+
+# ignore: folders to be built for production.
+- css
+- js
