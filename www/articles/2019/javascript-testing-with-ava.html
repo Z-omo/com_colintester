@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109163701-1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-109163701-1', { 'anonymize_ip': true });</script>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Colin Tester – JavaScript testing with AVA – ES6</title>
+  <meta name="description" content="Adding the AVA test runner to a project which uses ES6 modules.">
+<meta name="author" content="Colin Tester">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="JavaScript testing with AVA – ES6">
+<meta name="twitter:creator" content="@colint_focus">
+<meta name="twitter:description" content="Adding the AVA test runner to a project which uses ES6 modules.">
+<meta name="twitter:image" content="/resources/posts/share/javascript-testing-with-ava-header.jpg">
+
+<meta name="twitter:url" content="/2019/javascript-testing-with-ava">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript testing with AVA – ES6">
+<meta property="og:description" content="Adding the AVA test runner to a project which uses ES6 modules.">
+<meta property="og:image" content="/resources/posts/share/javascript-testing-with-ava-header.jpg">
+<meta property="og:url" content="/2019/javascript-testing-with-ava">
+<meta property="og:locale" content="en_GB">
+
+<!-- insert "favicon" -->
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#259cf7">
+<meta name="theme-color" content="#ffffff">
+<!-- end insert -->
+
+  <script>
+  (function(d) {
+    var config = {
+      kitId: 'mka1jjg',
+      scriptTimeout: 3000,
+      async: true
+    },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
+</script>
+
+<!-- insert "link-css" -->
+<link rel="stylesheet" href="/css/onfocus.5c535bc6.css">
+<!-- end insert -->
+</head>
+<body>
+  <div class="boundary work-example">
+
+<!-- insert "header" -->
+<header>
+  <h1>Colin Tester</h1>
+  <a class="logo" href="/" title="Jump to the home page of colintester.com">
+    <svg version="1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 308 213" preserveAspectRatio="xMinYMin"><path fill="#FFFFFF" d="M97 106c0-34 17-65 42-84C126 15 111 11 95 11 43 11 0 54 0 106s43 95 95 95c16 0 31-4 44-11C114 171 97 140 97 106z"/><circle id="iris" fill="#259CF7" cx="202" cy="106" r="105"/><path fill="#FFFFFF" d="M202 212c-58 0-106-48-106-106S144 0 202 0s106 48 106 106S260 212 202 212zM202 18c-49 0-88 40-88 88s40 88 88 88 88-40 88-88S251 18 202 18z"/><circle fill="#FFFFFF" cx="202" cy="106" r="20"/></svg>
+  </a>
+
+  <noscript><a href="#menu">Menu</a></noscript>
+
+  <div class="page-header-image"></div>
+  <h2>Helping to build a more robust <span>and inclusive web</span></h2>
+</header>
+<!-- end insert -->
+
+  <main itemscope itemtype="https://schema.org/Blog">
+    <h1>JavaScript testing with AVA – ES6</h1>
+
+    <style>
+      .boundary > header .page-header-image {
+        background-image: url('/resources/header/small/javascript-testing-with-ava-header.jpg');
+      }
+      @media only screen and (min-width: 39em) {
+        .boundary > header .page-header-image {
+          background-image: url('/resources/header/medium/javascript-testing-with-ava-header.jpg');
+        }
+      }
+      @media only screen and (min-width: 69em) {
+        .boundary > header .page-header-image {
+          background-image: url('/resources/header/large/javascript-testing-with-ava-header.jpg');
+        }
+      }
+    </style>
+
+    <div class="content">
+      <article itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting" class="post">
+        <header>
+          <meta itemprop="mainEntityOfPage" content="/2019/javascript-testing-with-ava">
+          <meta itemprop="name headline" content="JavaScript testing with AVA – ES6">
+          <meta itemprop="image" content="/resources/posts/share/javascript-testing-with-ava-header.jpg">
+          <dl>
+            <dt>Published:</dt>
+            <dd><time itemprop="datePublished" datetime="2019-09-14 00:00:00 +0100">14 September 2019</time></dd><meta itemprop="dateModified" content="2019-09-14 00:00:00 +0100">
+
+            <dt>By:</dt>
+            <dd itemprop="author" itemscope itemtype="https://schema.org/Person">
+              
+                <span itemprop="name" class="by-line">Colin Tester</span>
+              
+            </dd></dl>
+        </header>
+        
+        <p itemprop="description" class="statement">Adding the AVA test runner to a project which uses ES6 modules.</p><div itemprop="articleBody">
+          <p>Setting up a JavaScript testing environment can be a complex process; there is much to learn and numerous tools that need loading and configuring manually. <a href="https://github.com/avajs/ava">AVA – the JavaScript test runner</a> – offers a much simpler test API with a minimal amount of setting up.</p>
+
+<p>In this post I wish to demonstrate how simple – relatively speaking – it is to get AVA up and running tests on a example ES6 module which implements a simple interface to interact with a browser <abbr title="Document Object Model">DOM</abbr>.</p>
+
+<p><a href="https://github.com/Z-omo/javascript-testing-with-ava">In my project working folder</a> I have two sub-folders, labelled: <em>src</em> and <em>tests</em> to hold, respectively, our JavaScript source file and test file.</p>
+
+<ul>
+  <li>./src/example-module.js</li>
+  <li>./tests/example-module-test.js</li>
+</ul>
+
+<h3 id="installing-ava-and-supporting-dependencies">Installing AVA and supporting dependencies.</h3>
+
+<p>AVA is a test runner for Node.js so we will install the required modules using <a href="https://www.npmjs.com/get-npm">npm</a>. I am assuming that npm is installed already and initialised for this project.</p>
+
+<p>We want to load AVA and Babel as our project dev dependencies, with additional support to compile our ES6 written source files.</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ npm install --save-dev ava \
+@babel/core @babel/preset-env \
+@babel/register</code></pre></figure>
+
+<h3 id="babel-configuration">Babel configuration.</h3>
+
+<p>With the AVA and Babel modules installed, we will next create a <code class="highlighter-rouge">.babelrc</code> file and save it into the project’s root folder. Within the <code class="highlighter-rouge">.babelrc</code> file we will set the <em>preset</em> that Babel should use when compiling our source files.</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"presets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"@babel/preset-env"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<h3 id="ava-configuration">AVA configuration.</h3>
+
+<p><a href="https://github.com/avajs/ava/blob/master/docs/06-configuration.md">AVA operational options</a> can be set within the project’s <strong>package.json</strong> file. We want to inform AVA where our test files and source files are located.</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+  </span><span class="s2">"ava"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"tests/*-test.js"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"src/*.js"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"failFast"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verbose"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>We also added, in the above code, further AVA options to make sure tests fail as soon as an error is encountered (failFast) and receive a more verbose test result log.</p>
+
+<p>AVA does not, by default, compile ES6 source (src) files, only the test and helper files. To compile ES6 source files, we need to use Babel’s <em>register</em> module, which can also be added to the AVA configuration.</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+  </span><span class="s2">"ava"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="s2">"require"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="err">“@babel/register</span><span class="s2">"
+    ]
+  }
+}</span></code></pre></figure>
+
+<p>However, when using Babel’s <em>register</em> module, it will now compile not only our source files, but also the test files, which is not want we need nor is it necessary. We can inform Babel’s <em>register</em> to ignore test files via an external JavaScript file.</p>
+
+<p>The external file (_babel-register.js) is to be stored within our ./tests folder and the file name is prefixed with an underscore as AVA will ignore files with that prefix. The _babel-register.js file will contain the code to load (<em>require</em>) the <code class="highlighter-rouge">@babel/register</code> module and set the ignore option.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">require</span><span class="p">(</span><span class="s1">'@babel/register'</span><span class="p">)({</span>
+  <span class="na">ignore</span><span class="p">:</span> <span class="p">[</span><span class="s1">'node_modules/*'</span><span class="p">,</span> <span class="s1">'tests/*'</span><span class="p">]</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>We have now specified that @babel/register ignores all files in our <em>tests</em> folder and – for good measure – our <em>node_modules</em> folder.</p>
+
+<p>Now, back within the AVA configuration; located in the <strong>package.json</strong> file, we can require and substitute our external register file to be preloaded before AVA runs any tests.</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+  </span><span class="s2">"ava"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="s2">"require"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"./tests/_babel-register.js"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<h3 id="browser-testing">Browser testing.</h3>
+
+<p>AVA provides currently no support for running tests in a browser. However, we can mock browser globals such as <code class="highlighter-rouge">window</code> and <code class="highlighter-rouge">document</code> in order to test DOM integrations. That mocking is assisted by using the <a href="https://www.npmjs.com/package/browser-env">npm browser-env module</a>.</p>
+
+<p>Firstly, let’s install the browser-env module.</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ npm install --save-dev browser-env</code></pre></figure>
+
+<p>Next we create a helper file for the browser-env module and store it in our tests folder. Again, the helper file name is prefixed with an underscore so that AVA ignores the file.</p>
+
+<p>Within the helper file ./tests/_browser-env.js include the following code to load (require) the <code class="highlighter-rouge">browser-env</code> module:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">browserEnv</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'browser-env'</span><span class="p">);</span>
+<span class="nx">browserEnv</span><span class="p">([</span><span class="s1">'window'</span><span class="p">,</span> <span class="s1">'document'</span><span class="p">]);</span></code></pre></figure>
+
+<p>By default <code class="highlighter-rouge">browser-env</code> will add all global browser variables to the Node global space. However, this is considered generally to be not such a good idea, therefore, we can reduce the created browser globals by specifying what’s needed for the tests via an array.</p>
+
+<p>In the above code, we have specified required globals for <code class="highlighter-rouge">window</code> and <code class="highlighter-rouge">document</code> only.</p>
+
+<p>Finally, within the <strong>package.json</strong> file we can require that AVA preloads our helper _browser-env.js file.</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+  </span><span class="s2">"ava"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="s2">"require"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"./tests/_babel-register.js"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"./tests/_browser-env.js"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>We are now ready to run AVA and as we have installed AVA locally, relative to our project folder, we need to run AVA from its location within the <em>node_modules</em> folder. This can be done in one of two ways:</p>
+
+<ol>
+  <li>via npx which will run a locally npm installed module as a binary executable.</li>
+  <li>from an npm script defined within the package.json file.</li>
+</ol>
+
+<p>To run AVA directly from the command line with npx, type:</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ npx ava</code></pre></figure>
+
+<p>We can also add the <code class="highlighter-rouge">--watch</code> option to our command to allow AVA to watch for changes made to our source and test files and run tests automatically.</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ npx ava --watch</code></pre></figure>
+
+<p><strong>Note:</strong> When running in <em>watch</em> mode, <code class="highlighter-rouge">CTRL + c</code> will stop the watching process.</p>
+
+<p>However, let’s follow an npm convention and also add a test script to our package.json file.</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+  </span><span class="s2">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"test"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ava"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>We can then run the AVA tests from the command line simply with:</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ npm test
+
+...
+
+  ✖ Couldn't find any files to test</code></pre></figure>
+
+<p>Currently, we have no tests, so let’s create our example source JavaScript and some tests for it.</p>
+
+<h3 id="writing-tests">Writing tests.</h3>
+
+<p>Create the file example-module.js and save it within the ./src folder. Add the following code to the file:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s1">'use strict'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">exampleModule</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">view</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">elementID</span><span class="p">:</span> <span class="s1">'exampleElement'</span>
+  <span class="p">},</span>
+
+  <span class="nx">setupView</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">buildElement</span><span class="p">();</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">element</span> <span class="o">=</span> <span class="nx">element</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">exampleModule</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">buildElement</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'div'</span><span class="p">);</span>
+  <span class="nx">element</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">exampleModule</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">elementID</span><span class="p">;</span>
+  
+  <span class="k">return</span> <span class="nx">element</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Our JavaScript example module defines a simple object <em>exampleModule</em> with a simple interface method <em>setupView</em> which will create an HTML element and insert it into the DOM, within the browser’s document body element.</p>
+
+<p>Next let’s create a test file named example-module-test.js and save it in the ./tests folder. Add the following code to the test file:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="nx">test</span> <span class="k">from</span> <span class="s2">"ava"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">module</span> <span class="k">from</span> <span class="s2">"../src/example-module.js"</span><span class="p">;</span>
+
+<span class="nx">test</span><span class="p">(</span><span class="s1">'Module imported is an object'</span><span class="p">,</span> <span class="nx">t</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">t</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">module</span><span class="p">,</span> <span class="s1">'object'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">test</span><span class="p">(</span><span class="s1">'Module has a view property as an object'</span><span class="p">,</span> <span class="nx">t</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">t</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">module</span><span class="p">.</span><span class="nx">view</span><span class="p">,</span> <span class="s1">'object'</span><span class="p">);</span>
+<span class="p">});</span> </code></pre></figure>
+
+<p>We are importing AVA as ‘test’ and our example module file as ‘module’. We also have two tests defined and if we now run AVA again on the command line - we should see:</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ npm test
+
+...
+
+  ✔ Module imported is an object
+  ✔ Module has a view property as an object
+
+  2 tests passed</code></pre></figure>
+
+<p>We also need to test that our module’s browser DOM integration is working, and via the browser-env module; that we set to preload before running AVA tests, we have access to a mocked browser <em>document</em> object. We can, therefore, check our module’s DOM integrations just as if the module were running in a browser.</p>
+
+<p>Let’s add another test to our test file:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">test</span><span class="p">(</span><span class="s1">'Module has inserted an HTML element into the body element.'</span><span class="p">,</span> <span class="nx">t</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">module</span><span class="p">.</span><span class="nx">setupView</span><span class="p">();</span>
+  
+  <span class="kd">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#'</span> <span class="o">+</span> <span class="nx">module</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">elementID</span><span class="p">);</span>
+  <span class="nx">t</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">nodeName</span><span class="p">,</span> <span class="s1">'DIV'</span><span class="p">);</span>
+  <span class="nx">t</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="nx">module</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">element</span><span class="p">,</span> <span class="nx">element</span><span class="p">);</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>In the above test, we first call the module interface function <em>setupView</em>, and then attempt to find in the DOM, the element our module built and inserted.</p>
+
+<p>Run the AVA tests again from the command line:</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ npm test
+
+...
+
+  ✔ Module imported is an object
+  ✔ Module has a view property as an object
+  ✔ Module has inserted an HTML div element into the body element.
+
+  3 tests passed</code></pre></figure>
+
+<p>As you should see we now have <em>3 tests passed</em>.</p>
+
+<p>I hope that this post is helpful in getting the AVA test runner set up for your project, and please see the links below for more on AVA and the other supporting modules. I would also recommend highly learning about <a href="https://en.wikipedia.org/wiki/Test-driven_development">test-driven development</a> (TDD) as a better way to plan and implement tests for your next project.</p>
+
+<p>Links:</p>
+
+<ul>
+  <li><a href="https://github.com/avajs/ava/blob/master/docs/01-writing-tests.md">AVA Writing tests</a></li>
+  <li><a href="https://babeljs.io/">Babel</a></li>
+  <li><a href="https://www.npmjs.com/package/browser-env">browser-env</a></li>
+  <li><a href="https://github.com/Z-omo/javascript-testing-with-ava">Example files to support this blog post.</a></li>
+</ul>
+
+        </div>
+  
+        <footer>
+
+
+<dl class="share-links">
+  <dt>Share:</dt>
+  <dd>
+    <ul>
+      <li class="icon twitter">
+        <a href="https://twitter.com/intent/tweet?text=JavaScript%20testing%20with%20AVA%20%E2%80%93%20ES6&amp;url=http://dev.colintester.com/2019/javascript-testing-with-ava&amp;via=colint_focus" title="To: share this post on Twitter (link requests to open in a new browser window or tag)." target="_blank">Twitter</a>
+      </li>
+      <!-- <li class="icon facebook">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://dev.colintester.com/2019/javascript-testing-with-ava" title="To: share this post on Facebook (link requests to open in a new browser window or tag)." target="_blank">Facebook</a>
+      </li> -->
+      <li class="icon linkedin">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;source=Colin%20Tester&amp;url=http://dev.colintester.com/2019/javascript-testing-with-ava&amp;title=JavaScript%20testing%20with%20AVA%20%E2%80%93%20ES6" title="To: share this post on LinkedIn (link requests to open in a new browser window or tag)." target="_blank">LinkedIn</a>
+      </li>
+      <!-- <li class="icon google">
+        <a href="https://plus.google.com/share?url=http://dev.colintester.com/2019/javascript-testing-with-ava" title="To: share this post on Google+ (link requests to open in a new browser window or tag)." target="_blank">Google+</a>
+      </li> -->
+      <li class="icon email">
+        <a href="mailto:?subject=JavaScript%20testing%20with%20AVA%20%E2%80%93%20ES6&amp;body=Interesting%20article%20from%20Colin Tester:%20%0A%0ATitle:%20JavaScript%20testing%20with%20AVA%20%E2%80%93%20ES6%0ALink:%20http://dev.colintester.com/2019/javascript-testing-with-ava" title="To: share this post via e-mail (this link requests to use your installed e-mail program).">Email</a>
+      </li>
+    </ul>
+  </dd>
+</dl><span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+            <meta itemprop="name" content="Z-omo">
+            <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject"><meta itemprop="url" content="http://z-omo.com/resources/image/z-omo-logo.png"></span>
+          </span>
+        </footer>
+      </article>
+    </div>
+
+    <aside class="side-bar">
+      <p>Interested to learn how I might assist with your project? <a class="button" href="/contact">Get in touch</a></p>
+
+      <p class="inline-icon github"><a href="https://github.com/Z-omo" title="See Colin Tester's code examples on github.com">Code on Github</a></p>
+      
+      <p>Latest posts:</p>
+      <div itemscope itemtype="https://schema.org/Blog" class="articles work-articles">
+
+  <article itemscope itemtype="http://schema.org/BlogPosting" class="with-image">
+    <noscript>
+      <style>#three-to-go { background-image: url('/resources/posts/tiles/three-to-go.jpg'); }</style>
+    </noscript><meta itemprop="image" content="/resources/posts/tiles/three-to-go.jpg">
+  <a itemprop="url" id="three-to-go" href="/articles/2019/three-to-go.html" title="To read more on: Three to Go!" data-lazlo="background-image: url('/resources/posts/tiles/three-to-go.jpg')" data-lazlo-attr="style">
+    <header>
+      <meta itemprop="mainEntityOfPage" content="/2019/three-to-go">
+      <h1 itemprop="headline">Three to Go!</h1>
+      <time itemprop="datePublished" datetime="2019-10-25 00:00:00 +0100">25 Oct 2019</time>
+      <meta itemprop="dateModified" content="2019-10-25 00:00:00 +0100">
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Colin Tester"></span></header><meta itemprop="description" content="Multiple Go apps from one Digital Ocean droplet with their own domain/sub-domain.">
+    </a>
+    <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="Z-omo">
+      <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject"><meta itemprop="url" content="http://z-omo.com/resources/image/z-omo-logo.png"></span>
+    </span>
+  </article>
+  
+</div>
+
+    </aside>
+  
+  </main>
+  
+<!-- insert "navigation" -->
+<nav id="menu" role="navigation">
+  <ul>
+    <li class="active"><a href="/">Home</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/articles/">Articles</a></li>
+    <li><a href="/work/">Work</a></li>
+    <li class="mobile-only"><a href="/contact.html">Contact</a></li>
+    <!-- <li class="as-icon twitter"><a href="https://twitter.com/colint_focus">Colin Tester on Twitter</a></li> -->
+  </ul>
+</nav>
+<!-- end insert -->
+
+  <footer>
+  <p><span class="copyright">©</span> Colin Tester 2017</p>
+  <p>Focused on the finer details whilst maintaining a comprehensive view.</p>
+  <p>Interested to learn how I might assist with your project? <a class="button" href="/contact">Get in touch</a></p>
+
+</footer>
+  </div>
+
+<!-- insert "client-js" -->
+<script src="/js/onfocus.4dda363a.js"></script>
+<!-- end insert -->
+
+</body>
+</html>

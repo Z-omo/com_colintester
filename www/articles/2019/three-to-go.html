@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109163701-1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-109163701-1', { 'anonymize_ip': true });</script> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Colin Tester – Three to Go!</title>
+  <meta name="description" content="Multiple Go apps from one Digital Ocean droplet with their own domain/sub-domain.">
+<meta name="author" content="Colin Tester">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Three to Go!">
+<meta name="twitter:creator" content="@colint_focus">
+<meta name="twitter:description" content="Multiple Go apps from one Digital Ocean droplet with their own domain/sub-domain.">
+<meta name="twitter:image" content="/resources/posts/share/three-to-go-header.jpg">
+
+<meta name="twitter:url" content="/2019/three-to-go">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Three to Go!">
+<meta property="og:description" content="Multiple Go apps from one Digital Ocean droplet with their own domain/sub-domain.">
+<meta property="og:image" content="/resources/posts/share/three-to-go-header.jpg">
+<meta property="og:url" content="/2019/three-to-go">
+<meta property="og:locale" content="en_GB">
+
+<!-- insert "favicon" -->
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#259cf7">
+<meta name="theme-color" content="#ffffff">
+<!-- end insert -->
+
+  <script>
+  (function(d) {
+    var config = {
+      kitId: 'mka1jjg',
+      scriptTimeout: 3000,
+      async: true
+    },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
+</script>    
+<!-- insert "link-css" -->
+<link rel="stylesheet" href="/css/onfocus.5c535bc6.css">
+<!-- end insert -->
+</head>
+<body>
+  <div class="boundary work-example">
+
+<!-- insert "header" -->
+<header>
+  <h1>Colin Tester</h1>
+  <a class="logo" href="/" title="Jump to the home page of colintester.com">
+    <svg version="1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 308 213" preserveAspectRatio="xMinYMin"><path fill="#FFFFFF" d="M97 106c0-34 17-65 42-84C126 15 111 11 95 11 43 11 0 54 0 106s43 95 95 95c16 0 31-4 44-11C114 171 97 140 97 106z"/><circle id="iris" fill="#259CF7" cx="202" cy="106" r="105"/><path fill="#FFFFFF" d="M202 212c-58 0-106-48-106-106S144 0 202 0s106 48 106 106S260 212 202 212zM202 18c-49 0-88 40-88 88s40 88 88 88 88-40 88-88S251 18 202 18z"/><circle fill="#FFFFFF" cx="202" cy="106" r="20"/></svg>
+  </a>
+
+  <noscript><a href="#menu">Menu</a></noscript>
+
+  <div class="page-header-image"></div>
+  <h2>Helping to build a more robust <span>and inclusive web</span></h2>
+</header>
+<!-- end insert -->
+
+<main itemscope itemtype="https://schema.org/Blog">
+    <h1>Three to go!</h1>
+    <style>
+      .boundary > header .page-header-image {
+        background-image: url('/resources/header/small/three-to-go-header.jpg');
+      }
+      @media only screen and (min-width: 39em) {
+        .boundary > header .page-header-image {
+          background-image: url('/resources/header/medium/three-to-go-header.jpg');
+        }
+      }
+      @media only screen and (min-width: 69em) {
+        .boundary > header .page-header-image {
+          background-image: url('/resources/header/large/three-to-go-header.jpg');
+        }
+      }
+    </style>
+
+    <div class="content">
+      <article itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting" class="post">
+        <header>
+          <meta itemprop="mainEntityOfPage" content="/2019/three-to-go">
+          <meta itemprop="name headline" content="Three to Go!">
+          <meta itemprop="image" content="/resources/posts/share/three-to-go-header.jpg">
+          <dl>
+            <dt>Published:</dt>
+            <dd><time itemprop="datePublished" datetime="2019-10-25 00:00:00 +0100">25 October 2019</time></dd><meta itemprop="dateModified" content="2019-10-25 00:00:00 +0100">
+
+            <dt>By:</dt>
+            <dd itemprop="author" itemscope itemtype="https://schema.org/Person">
+              <span itemprop="name" class="by-line">Colin Tester</span>
+            </dd></dl>
+        </header>
+        
+        <p itemprop="description" class="statement">Multiple Go apps from one Digital Ocean droplet with their own domain/sub-domain.</p><div itemprop="articleBody">
+          <p>In planning a project with a need to abstract out some of its operations to separate, self-contained services, it seems sensible to utilise the benefits of containerisation. Sometimes, however, this approach might appear overly complex, particularly for a project that begins its life with fewer demands on technical resources.</p>
+
+<p>With that in mind, I was interested to understand what was involved in setting multiple web-based Go apps running on one server; each operating from their own domain/sub-domain.</p>
+
+<p>My server provider for this exercise is Digital Ocean who provide plenty of content to help with setting up numerous server configurations, and it is from some of their content that I found a solution.</p>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>In this post, I assume that a Digital Ocean account and droplet (Linux) has been created along with a non-root user for connecting into the server using a secure shell (ssh). Plus, <a href="https://en.wikipedia.org/wiki/Nginx">nginx</a> is installed on the droplet and you have your own domain name which can be pointed to the Digital Ocean droplet.</p>
+
+<p>Please see the following Digital Ocean articles on how to prepare for the preceding assumptions.</p>
+
+<ul>
+  <li><a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-18-04">Initial Server Setup with Ubuntu 18.04</a></li>
+  <li><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1804">How to Set Up SSH Keys on Ubuntu 18.04</a></li>
+  <li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04">How To Install Nginx on Ubuntu 18.04</a></li>
+  <li><a href="https://www.digitalocean.com/docs/networking/dns/">How To Set Up a Host Name with DigitalOcean</a></li>
+</ul>
+
+<p>I intend to run three separate Go apps and make them accessible from their own domain; one from the main domain, and the remaining two from sub-domains:</p>
+
+<ol>
+  <li>First app – example.com</li>
+  <li>Second app – second.example.com</li>
+  <li>Third app – third.example.com</li>
+</ol>
+
+<h3 id="local-development-environment">Local development environment</h3>
+
+<p>Let’s set up the local working space. In a terminal window navigate to your working space and create a new project folder.</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ mkdir three-to-go &amp;&amp; cd three-to-go</code></pre></figure>
+
+<p>Let’s create the First simple Go app file within its own folder.</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ mkdir -p src/first &amp;&amp; touch src/first/main.go</code></pre></figure>
+
+<p>Open the main.go file in a code editor and save into it the following code:</p>
+
+<figure class="highlight"><pre><code class="language-go" data-lang="go"><span class="k">package</span><span class="x"> </span><span class="n">main</span><span class="x">
+
+</span><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
+  </span><span class="s">"fmt"</span><span class="x">
+  </span><span class="s">"net/http"</span><span class="x">
+</span><span class="p">)</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">http</span><span class="o">.</span><span class="n">HandleFunc</span><span class="p">(</span><span class="s">"/"</span><span class="p">,</span><span class="x"> </span><span class="k">func</span><span class="p">(</span><span class="n">w</span><span class="x"> </span><span class="n">http</span><span class="o">.</span><span class="n">ResponseWriter</span><span class="p">,</span><span class="x"> </span><span class="n">r</span><span class="x"> </span><span class="o">*</span><span class="n">http</span><span class="o">.</span><span class="n">Request</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+
+    </span><span class="c">// http response text:</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Fprintf</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="x"> </span><span class="s">"Hello from the [ First ] Go app."</span><span class="p">)</span><span class="x">
+  </span><span class="p">})</span><span class="x">
+  
+  </span><span class="n">http</span><span class="o">.</span><span class="n">ListenAndServe</span><span class="p">(</span><span class="s">":9991"</span><span class="p">,</span><span class="x"> </span><span class="no">nil</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>Each of the three Go apps will listen to http requests on a unique port number. The <em>First</em> Go app will listen on port number: <strong>9991</strong>. The <em>Second</em> and <em>Third</em> Go apps will listen on port numbers <strong>9992</strong> and <strong>9993</strong> respectively.</p>
+
+<p>Now, repeat the above steps to create a main.go file and content for the two other Go apps, each within their own folder.</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ mkdir -p src/second &amp;&amp; touch src/second/main.go
+$ mkdir -p src/third &amp;&amp; touch src/third/main.go</code></pre></figure>
+
+<p>Open each main.go file and save to it the same code as in the First Go app, changing the http response text and http port number.</p>
+
+<p>For the <em>Second</em> Go app:</p>
+
+<figure class="highlight"><pre><code class="language-go" data-lang="go"><span class="k">package</span><span class="x"> </span><span class="n">main</span><span class="x">
+
+</span><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
+  </span><span class="s">"fmt"</span><span class="x">
+  </span><span class="s">"net/http"</span><span class="x">
+</span><span class="p">)</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">http</span><span class="o">.</span><span class="n">HandleFunc</span><span class="p">(</span><span class="s">"/"</span><span class="p">,</span><span class="x"> </span><span class="k">func</span><span class="p">(</span><span class="n">w</span><span class="x"> </span><span class="n">http</span><span class="o">.</span><span class="n">ResponseWriter</span><span class="p">,</span><span class="x"> </span><span class="n">r</span><span class="x"> </span><span class="o">*</span><span class="n">http</span><span class="o">.</span><span class="n">Request</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+
+    </span><span class="c">// http response text:</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Fprintf</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="x"> </span><span class="s">"Hello from the [ Second ] Go app."</span><span class="p">)</span><span class="x">
+  </span><span class="p">})</span><span class="x">
+  
+  </span><span class="n">http</span><span class="o">.</span><span class="n">ListenAndServe</span><span class="p">(</span><span class="s">":9992"</span><span class="p">,</span><span class="x"> </span><span class="no">nil</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>For the <em>Third</em> Go app:</p>
+
+<figure class="highlight"><pre><code class="language-go" data-lang="go"><span class="k">package</span><span class="x"> </span><span class="n">main</span><span class="x">
+
+</span><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
+  </span><span class="s">"fmt"</span><span class="x">
+  </span><span class="s">"net/http"</span><span class="x">
+</span><span class="p">)</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">http</span><span class="o">.</span><span class="n">HandleFunc</span><span class="p">(</span><span class="s">"/"</span><span class="p">,</span><span class="x"> </span><span class="k">func</span><span class="p">(</span><span class="n">w</span><span class="x"> </span><span class="n">http</span><span class="o">.</span><span class="n">ResponseWriter</span><span class="p">,</span><span class="x"> </span><span class="n">r</span><span class="x"> </span><span class="o">*</span><span class="n">http</span><span class="o">.</span><span class="n">Request</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+
+    </span><span class="c">// http response text:</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Fprintf</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="x"> </span><span class="s">"Hello from the [ Third ] Go app."</span><span class="p">)</span><span class="x">
+  </span><span class="p">})</span><span class="x">
+  
+  </span><span class="n">http</span><span class="o">.</span><span class="n">ListenAndServe</span><span class="p">(</span><span class="s">":9993"</span><span class="p">,</span><span class="x"> </span><span class="no">nil</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span></code></pre></figure>
+
+<h3 id="app-binary-build-and-deployment">App binary build and deployment</h3>
+
+<p>The plan is to deploy the Go apps to the server as executable binaries, so let’s build those first, locally.</p>
+
+<p>Go’s compiler facilitates building a binary for many different operating systems and architecture and we can specify those options with the <code class="highlighter-rouge">go build</code> command.</p>
+
+<p>To build a executable to run on Ubuntu we need to select Linux as the operating system and <code class="highlighter-rouge">amd64</code> as the architecture. That is done by setting environment variables: <code class="highlighter-rouge">GOOS=linux GOARCH=amd64</code>.</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ GOOS=linux GOARCH=amd64 go build -o bin/first/main src/first/main.go</code></pre></figure>
+
+<p>Using the <code class="highlighter-rouge">-o</code> flag, sets the output file path and filename of the compiled executable file <em>main</em> into the local <em>bin</em> folder.</p>
+
+<p>Repeat for the other two apps (Second and Third):</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ GOOS=linux GOARCH=amd64 go build -o bin/second/main src/second/main.go
+$ GOOS=linux GOARCH=amd64 go build -o bin/third/main src/third/main.go</code></pre></figure>
+
+<p>The plan is to store the Go apps within the <em>home</em> folder of the server’s non-root user, in a sub-folder labelled: ‘go’.</p>
+
+<p>Open a new terminal window and connect to your server via a secure shell (ssh).</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ ssh non-root-user@server-ip-address</code></pre></figure>
+
+<p>Substitute your own non-root user name for the <em>non-root-user</em> part of the ssh string, and substitute your server’s IP address for <em>server-ip-address</em>.</p>
+
+<p>When connected, create the folder where the executable binaries will be stored.</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ mkdir go</code></pre></figure>
+
+<p>We can now copy the binaries securely to the Digital Ocean server. There are two ways that can be done, using either the <em>scp</em> or <em>rsync</em> command line utility.</p>
+
+<p>Back in the terminal window of the working project folder. Again, substitute your own non-root user name and your server’s IP address for those in the following command strings.</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ scp -r bin/ non-root-user@server-ip-address:/home/non-root-user/go</code></pre></figure>
+
+<p>Using the <code class="highlighter-rouge">-r</code> flag to recursively copy folders and files from the local <em>bin</em> folder.</p>
+
+<p>Alternatively, use <a href="https://rsync.samba.org/"><em>rsync</em></a> to synchronise the local files with the server – better and faster, particularly if there is a need to push updates to the server later.</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ rsync -avz -e ssh bin/ non-root-user@server-ip-address:/home/non-root-user/go</code></pre></figure>
+
+<p>Using flags as <code class="highlighter-rouge">-avz</code>:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">-a</code> Archive mode, recursively: preserving permissions, modification times, symlinks, etc</li>
+  <li><code class="highlighter-rouge">-v</code> Increase verbosity</li>
+  <li><code class="highlighter-rouge">-z</code> Compress file data</li>
+</ul>
+
+<p>Plus <code class="highlighter-rouge">-e</code> specify the remote shell to use.</p>
+
+<p>The <em>rsync</em> command will synchronise all folders and files in the local <em>bin</em> folder over to the <em>go</em> folder we created earlier in the non-root user’s <em>home</em> folder on the server.</p>
+
+<p>The executable binaries should now be in the <em>go</em> folder on the server. You can check this by listing, recursively,   the contents of the <em>go</em> folder.</p>
+
+<p>Via the terminal window with the secure shell connection (ssh) to your server:</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ ls -R go
+go:
+first  second  third
+
+go/first:
+main
+
+go/second:
+main
+
+go/third:
+main</code></pre></figure>
+
+<h3 id="domain-name-setup">Domain name setup</h3>
+
+<p>If you have followed the steps in the article <a href="https://www.digitalocean.com/docs/networking/dns/">How To Set Up a Host Name with DigitalOcean</a>, you should have your own domain name set up on your Digital Ocean account. You will also need to point your domain and sub-domains to the droplet you are using for your Go apps.</p>
+
+<p>Please see <a href="https://www.digitalocean.com/docs/networking/dns/how-to/manage-records/">how to manage DNS records</a> in the Digital Ocean docs section, where you can set the <em>WILL DIRECT TO</em> option to point your domain/sub-domain to your droplet instance.</p>
+
+<h3 id="setup-nginx-to-serve-multiple-go-apps">Setup Nginx to serve multiple Go apps</h3>
+
+<p>As stated in the <a href="#introduction">Introduction</a>, I assume that nginx has been installed onto your droplet. You can check if it is running by visiting the server’s IP address in your browser.</p>
+
+<figure class="image">
+  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" data-lazlo="resources/image/small/nginx-welcome.png" alt="nginx welcome content." data-dims="520x220" />
+  
+</figure>
+
+<p>On the server, nginx is to be set up as a <a href="https://en.wikipedia.org/wiki/Reverse_proxy">reverse-proxy</a> to which a client (browser) will connect. The proxy represents the three apps’ individual http server, connecting to them via port-forwarding.</p>
+
+<p>Remember, that each of the three apps, when running, will listen for http requests on a unique port number. So, we need to create an nginx configuration file for each of the apps, defining the domain name and the location of the end server (a Go app) which the proxy represents.</p>
+
+<p>Nginx retains site configuration files in its <em>sites-available</em> folder in which the configuration file for the First Go app will be created.</p>
+
+<p>The Vim text editor will be used to create and edit the configuration file, as it will be installed already for your droplet.</p>
+
+<p>Within the terminal window with the ssh connection to your server, type:</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ sudo vi /etc/nginx/sites/sites-available/first-app</code></pre></figure>
+
+<p>As we are logged in as a non-root user, we need to prefix the <code class="highlighter-rouge">vi</code> command with the special <em>sudo</em> (super user do) unix command to allow our non-root user to have elevated privileges. The command <em>vi</em> opens Vim, creating the file <em>first-app</em> at the path to <em>sites-available</em>.</p>
+
+<p>In Vim, press the ‘i’ key to enter <code class="highlighter-rouge">-- INSERT --</code> mode and add the following to the file.</p>
+
+<figure class="highlight"><pre><code class="language-nginx" data-lang="nginx"><span class="k">server</span> <span class="p">{</span>
+  <span class="kn">server_name</span> <span class="s">example.com</span> <span class="s">www.example.com</span>
+  
+  <span class="s">location</span> <span class="n">/</span> <span class="p">{</span>
+    <span class="kn">proxy_pass</span> <span class="s">http://localhost:9991</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>In the configuration file, we are specifying a server definition for the domain names we wish to catch, and the location of the end server to which the proxy will pass the requests.</p>
+
+<p><strong>Note:</strong> the <em>proxy_pass</em> value includes the port number (9991), that being the port number the First Go app is listening on.</p>
+
+<p>Substitute your own domain name for <em>example.com</em>. Note that we have included the <em>www</em> sub-domain in the <em>server_name</em> value, defining that either of the two domain variants are to be captured.</p>
+
+<p>Exit Vim’s <code class="highlighter-rouge">-- INSERT --</code>  mode by pressing the <strong>ESC</strong> key, then save the configuration file by typing <strong>:wq</strong> – the Vim command to write (w) changes to the file and then quit (q).</p>
+
+<p>Now that we have a configuration file for the First Go app, we can create one each – using Vim – for the Second and Third Go apps.</p>
+
+<p>For the Second Go app:</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ sudo vi /etc/nginx/sites/sites-available/second-app</code></pre></figure>
+
+<p>Enter the following in Vim’s <code class="highlighter-rouge">-- INSERT --</code> mode (i) …</p>
+
+<figure class="highlight"><pre><code class="language-nginx" data-lang="nginx"><span class="k">server</span> <span class="p">{</span>
+  <span class="kn">server_name</span> <span class="s">second.example.com</span>
+  
+  <span class="s">location</span> <span class="n">/</span> <span class="p">{</span>
+    <span class="kn">proxy_pass</span> <span class="s">http://localhost:9992</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>…then save the file <strong>ESC</strong>, <strong>:wq</strong></p>
+
+<p><strong>Note:</strong> that the <em>server_name</em> value is now set with the sub-domain name and the <em>proxy_pass</em> value points to a location using the port number the Second Go app is listening on (9992).</p>
+
+<p>For the Third go app:</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ sudo vi /etc/nginx/sites/sites-available/third-app</code></pre></figure>
+
+<p>Enter the following… then save the file.</p>
+
+<figure class="highlight"><pre><code class="language-nginx" data-lang="nginx"><span class="k">server</span> <span class="p">{</span>
+  <span class="kn">server_name</span> <span class="s">third.example.com</span>
+  
+  <span class="s">location</span> <span class="n">/</span> <span class="p">{</span>
+    <span class="kn">proxy_pass</span> <span class="s">http://localhost:9993</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Now that we have configuration files for each of the three Go apps in nginx’s <em>sites-available</em>, we now need to enable each individual site. That is done by creating a <a href="https://en.wikipedia.org/wiki/Symbolic_link">symbolic link</a> in nginx’s <em>sites-enabled</em> folder, linking to each Go app configuration file created in <em>sites-available</em>.</p>
+
+<p>Create a symlink for each of the three Go apps:</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ sudo ln -s /etc/nginx/sites-available/first-app \
+/etc/nginx/sites-enabled/first-app
+
+$ sudo ln -s /etc/nginx/sites-available/second-app \
+/etc/nginx/sites-enabled/second-app
+
+$ sudo ln -s /etc/nginx/sites-available/third-app \
+/etc/nginx/sites-enabled/third-app</code></pre></figure>
+
+<p>Check that the symlinks have been created as expected by using the unix <em>list</em> command:</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ sudo ls -l /etc/nginx/sites-enabled
+...
+... first-app -&gt; /etc/nginx/sites-available/first-app
+... second-app -&gt; /etc/nginx/sites-available/second-app
+... third-app -&gt; /etc/nginx/sites-available/third-app</code></pre></figure>
+
+<p>The <code class="highlighter-rouge">-l</code> flag will display in long listing format and show how the symlinks are connected, e.g. link_file -&gt; source_file.</p>
+
+<p>To get nginx to read the configuration files, we need to instruct it to reload.</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ sudo nginx -s reload</code></pre></figure>
+
+<p>The <code class="highlighter-rouge">-s reload</code> flag sends a signal to the master process running nginx; telling it to ‘reload’.</p>
+
+<p>As a test, let’s run the First Go app executable and see what loads in a browser for the main domain name (example.com).</p>
+
+<p>Run the First Go app (from the server session terminal window).</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ ./go/first/main</code></pre></figure>
+
+<p>With the First Go app running, point a browser to the app’s domain name, e.g. http://example.com – substitute your own domain name.</p>
+
+<p>In the browser window, the following should be loaded: <strong>Hello from the [ First ] Go app.</strong></p>
+
+<p>Ok, that should be working ok, so let’s stop the First Go app by returning to the server terminal window and pressing the CTRL + C keys. Then, let’s also test if the Second and Third apps configurations are running as expected.</p>
+
+<p>Run the Second Go app.</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ ./go/second/main</code></pre></figure>
+
+<p>Visit http://second.example.com – substitute your own domain name – in a browser, we should see: <br /><strong>Hello from the [ Second ] Go app.</strong></p>
+
+<p>In the server session terminal window, press CTRL + C to stop the Second Go app, then repeat a test for the Third Go app.</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ ./go/third/main</code></pre></figure>
+
+<p>Visit http://third.example.com we should see: <strong>Hello from the [ Third ] Go app.</strong></p>
+
+<p>Press CTRL + C to stop the Third Go app.</p>
+
+<h3 id="automatically-run-our-apps-when-the-server-boots">Automatically run our apps when the server boots</h3>
+
+<p>We want to run multiple (three) Go apps and, crucially, we need the apps to run automatically without the need for manual intervention. For that to work we will use the Linux <em>systemd</em> facility.</p>
+
+<p>The <a href="https://en.wikipedia.org/wiki/Systemd"><em>systemd</em> suite</a> comprises basic building blocks of the Linux system and facilitates a system and service manager from which we will use <code class="highlighter-rouge">.service</code> files to define system services, and the command utility <em>systemctl</em> to manage those services.</p>
+
+<p>We are going to create three <code class="highlighter-rouge">.service</code> files, one for each of the three Go apps.</p>
+
+<p>Back in the server session terminal window, use Vim to create the First <code class="highlighter-rouge">.service</code> file.</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ sudo vi /lib/systemd/system/first-app.service</code></pre></figure>
+
+<p>Enter the following into the <code class="highlighter-rouge">.service</code> file as the minimum to define a service:</p>
+
+<figure class="highlight"><pre><code class="language-.service" data-lang=".service">[Unit]
+Description=Go app running under example.com
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5s
+ExecStart=/home/non-root-user/go/first/main
+WorkingDirectory=/home/non-root-user/go/first
+
+[Install]
+WantedBy=multi-user.target</code></pre></figure>
+
+<p>In the <code class="highlighter-rouge">.service</code> file, the <em>service</em> specifics are defined under the <code class="highlighter-rouge">[Service]</code> section. Crucial options are:</p>
+
+<ul>
+  <li>Restart – service shall be restarted after it exits or is killed.</li>
+  <li>ExecStart – The command to run, points to a Go app.</li>
+  <li>WorkingDirectory – The absolute path from where the ExecStart command is to run.</li>
+</ul>
+
+<p>Remember to substitute your own domain name in the <em>Description</em> and non-root user name in the <em>ExecStart</em> and <em>WorkingDirectory</em> paths.</p>
+
+<p>Save the file and repeat for the other two Go apps.</p>
+
+<p>For the Second Go app service…</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ sudo vi /lib/systemd/system/second-app.service</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-.service" data-lang=".service">[Unit]
+Description=Go app running under second.example.com
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5s
+ExecStart=/home/non-root-user/go/second/main
+WorkingDirectory=/home/non-root-user/go/second
+
+[Install]
+WantedBy=multi-user.target</code></pre></figure>
+
+<p>… and the Third Go app service…</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ sudo vi /lib/systemd/system/third-app.service</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-.service" data-lang=".service">[Unit]
+Description=Go app running under third.example.com
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5s
+ExecStart=/home/non-root-user/go/third/main
+WorkingDirectory=/home/non-root-user/go/third
+
+[Install]
+WantedBy=multi-user.target</code></pre></figure>
+
+<p>Now, we can set each of our three services to start automatically at server boot by <em>enabling</em> them. We use the systemd <code class="highlighter-rouge">systemctl</code> command to do that.</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ sudo systemctl enable first-app.service
+$ sudo systemctl enable second-app.service
+$ sudo systemctl enable third-app.service</code></pre></figure>
+
+<p>If we want to, we can also get our services, and subsequently our apps, to run now with systemctl:</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ sudo systemctl start first-app.service
+$ sudo systemctl start second-app.service
+$ sudo systemctl start third-app.service</code></pre></figure>
+
+<p>The final test: let’s see if the services we’ve set up, now start automatically after a server reboot:</p>
+
+<figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ sudo shutdown -r now</code></pre></figure>
+
+<p>The above <code class="highlighter-rouge">shutdown</code> command will instruct the server to <code class="highlighter-rouge">shutdown</code> and restart <code class="highlighter-rouge">-r</code>.</p>
+
+<p>After a few moments, reload the three apps via their domain variants in your browser – they should all be running!</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>We have managed to:</p>
+
+<ol>
+  <li>Create three Go apps.</li>
+  <li>Deploy executable binaries of each app to a Digital Ocean server.</li>
+  <li>Set up an nginx reverse-proxy to route domain specific traffic to each Go app.</li>
+  <li>Set up system services to make sure the apps start automatically when the server is rebooted.</li>
+</ol>
+
+<p>In the next post I will detail how to serve the Go apps using TLS.</p>
+
+<p>Links to reference articles and tutorials:</p>
+
+<ul>
+  <li><a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-18-04">Initial Server Setup with Ubuntu 18.04</a></li>
+  <li><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1804">How to Set Up SSH Keys on Ubuntu 18.04</a></li>
+  <li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04">How To Install Nginx on Ubuntu 18.04</a></li>
+  <li><a href="https://nginx.org/en/docs/">Nginx documentation</a></li>
+  <li><a href="https://www.digitalocean.com/docs/networking/dns/">How To Set Up a Host Name with DigitalOcean</a></li>
+  <li><a href="https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units">How To Use Systemctl to Manage Systemd Services and Units</a></li>
+</ul>
+
+        </div>
+  
+        <footer>
+
+
+<dl class="share-links">
+  <dt>Share:</dt>
+  <dd>
+    <ul>
+      <li class="icon twitter">
+        <a href="https://twitter.com/intent/tweet?text=Three%20to%20Go!&amp;url=http://dev.colintester.com/2019/three-to-go&amp;via=colint_focus" title="To: share this post on Twitter (link requests to open in a new browser window or tag)." target="_blank">Twitter</a>
+      </li>
+      <!-- <li class="icon facebook">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://dev.colintester.com/2019/three-to-go" title="To: share this post on Facebook (link requests to open in a new browser window or tag)." target="_blank">Facebook</a>
+      </li> -->
+      <li class="icon linkedin">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;source=Colin%20Tester&amp;url=http://dev.colintester.com/2019/three-to-go&amp;title=Three%20to%20Go!" title="To: share this post on LinkedIn (link requests to open in a new browser window or tag)." target="_blank">LinkedIn</a>
+      </li>
+      <!-- <li class="icon google">
+        <a href="https://plus.google.com/share?url=http://dev.colintester.com/2019/three-to-go" title="To: share this post on Google+ (link requests to open in a new browser window or tag)." target="_blank">Google+</a>
+      </li> -->
+      <li class="icon email">
+        <a href="mailto:?subject=Three%20to%20Go!&amp;body=Interesting%20article%20from%20Colin Tester:%20%0A%0ATitle:%20Three%20to%20Go!%0ALink:%20http://dev.colintester.com/2019/three-to-go" title="To: share this post via e-mail (this link requests to use your installed e-mail program).">Email</a>
+      </li>
+    </ul>
+  </dd>
+</dl><span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+            <meta itemprop="name" content="Z-omo">
+            <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject"><meta itemprop="url" content="http://z-omo.com/resources/image/z-omo-logo.png"></span>
+          </span>
+        </footer>
+      </article>
+    </div>
+
+    <aside class="side-bar">
+      <p>Interested to learn how I might assist with your project? <a class="button" href="/contact">Get in touch</a></p>
+
+      <p class="inline-icon github"><a href="https://github.com/Z-omo" title="See Colin Tester's code examples on github.com">Code on Github</a></p>
+      
+      <p>Latest posts:</p>
+      <div itemscope itemtype="https://schema.org/Blog" class="articles work-articles">
+  
+        <article itemscope itemtype="http://schema.org/BlogPosting" class="with-image">
+    <noscript>
+      <style>#javascript-testing-with-ava { background-image: url('/resources/posts/tiles/javascript-testing-with-ava.jpg');}</style>
+    </noscript><meta itemprop="image" content="/resources/posts/tiles/javascript-testing-with-ava.jpg">
+  <a itemprop="url" id="javascript-testing-with-ava" href="/articles/2019/javascript-testing-with-ava.html" title="To read more on: JavaScript testing with AVA – ES6" data-lazlo="background-image: url('/resources/posts/tiles/javascript-testing-with-ava.jpg')" data-lazlo-attr="style">
+    <header>
+      <meta itemprop="mainEntityOfPage" content="/2019/javascript-testing-with-ava">
+      <h1 itemprop="headline">JavaScript testing with AVA – ES6</h1>
+      <time itemprop="datePublished" datetime="2019-09-14 00:00:00 +0100">14 Sep 2019</time>
+      <meta itemprop="dateModified" content="2019-09-14 00:00:00 +0100">
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Colin Tester"></span></header><meta itemprop="description" content="Adding the AVA test runner to a project which uses ES6 modules.">
+    </a>
+    <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="Z-omo">
+      <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject"><meta itemprop="url" content="http://z-omo.com/resources/image/z-omo-logo.png"></span>
+    </span>
+  </article>
+
+  </div>
+
+    </aside>
+  
+  </main>
+  
+<!-- insert "navigation" -->
+<nav id="menu" role="navigation">
+  <ul>
+    <li class="active"><a href="/">Home</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/articles/">Articles</a></li>
+    <li><a href="/work/">Work</a></li>
+    <li class="mobile-only"><a href="/contact.html">Contact</a></li>
+    <!-- <li class="as-icon twitter"><a href="https://twitter.com/colint_focus">Colin Tester on Twitter</a></li> -->
+  </ul>
+</nav>
+<!-- end insert -->
+
+  <footer>
+  <p><span class="copyright">©</span> Colin Tester 2017</p>
+  <p>Focused on the finer details whilst maintaining a comprehensive view.</p>
+  <p>Interested to learn how I might assist with your project? <a class="button" href="/contact">Get in touch</a></p>
+
+</footer>
+  </div>
+
+<!-- insert "client-js" -->
+<script src="/js/onfocus.4dda363a.js"></script>
+<!-- end insert -->
+</body>
+</html>
