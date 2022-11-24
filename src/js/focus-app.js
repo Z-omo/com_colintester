@@ -18,14 +18,12 @@ import Lazlo from './Lazlo';
 import RWDView from './rwd-view';
 
 const focus = {
-
   view: {
     smallViewEM:    39,
     scrolledClass:  'js-scrolled'
   },
 
-  init()
-  {
+  init() {
     setViewParams();
     setJSMode();    
     focus.view.smallView && setupMobileMenu();
@@ -38,8 +36,7 @@ const focus = {
 
 export default focus
 
-function setViewParams()
-{
+function setViewParams() {
   let boundary = document.querySelector('.boundary');
   if (!boundary) { return; }
 
@@ -53,13 +50,11 @@ function setViewParams()
   focus.view.home = DOM.hasClass('home', DOM.body);
 }
 
-function setJSMode()
-{
+function setJSMode() {
   DOM.addClass('focus-js', DOM.html);
 }
 
-function setupMobileMenu()
-{
+function setupMobileMenu() {
   let nav = document.querySelector('#menu');
   if (!nav) { return; }
 
@@ -69,11 +64,6 @@ function setupMobileMenu()
   menu.addEventListener(
     'click', () => DOM.toggleClass('open', focus.view.nav)
   );
-
-  // let home = document.createElement('span');
-  // nav.appendChild(home);
-  // DOM.addClass('home-link', home);
-  // home.addEventListener('click', () => window.location.href = './');
 
   focus.view.nav = nav;
 }
@@ -91,17 +81,13 @@ function setupHeaderTitle() {
   ht.innerHTML = t.innerHTML;
 }
 
-function setupEvents()
-{
+function setupEvents() {
   window.addEventListener('scroll', onScroll);
 }
 
-function onScroll()
-{
-  if (!focus.view.scrolling)
-  {
-    if (window.requestAnimationFrame)
-    {
+function onScroll() {
+  if (!focus.view.scrolling) {
+    if (window.requestAnimationFrame) {
       window.requestAnimationFrame(requestScrollCheck);
     } else {
       setTimeout(requestScrollCheck, 200);
@@ -111,41 +97,35 @@ function onScroll()
   focus.view.scrolling = true;
 }
 
-function requestScrollCheck()
-{
+function requestScrollCheck() {
   setScrollState();
   focus.view.scrolling = false;
 }
 
-function setScrollState()
-{
+function setScrollState() {
   let scroll = window.pageYOffset;
 
-  if (0 === scroll)
-  {
+  if (0 === scroll) {
     DOM.removeClass(focus.view.scrolledClass, DOM.html);
     focus.view.scrolled = false;
     return;
   }
 
-  if (!focus.view.scrolled)
-  {
+  if (!focus.view.scrolled) {
     DOM.addClass(focus.view.scrolledClass, DOM.html);
   }
   
   focus.view.scrolled = true;
 }
 
-function setupLazyLoad()
-{
+function setupLazyLoad() {
   let toLoad = DOM.getAll('[data-lazlo]');
   if (!toLoad) { return; }
 
   Lazlo.watch(toLoad);
 }
 
-function setupRWDViews()
-{
+function setupRWDViews() {
   let rwd = DOM.getAll('.rwd-view');
   if (!rwd) { return; }
 

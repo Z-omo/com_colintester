@@ -19,7 +19,12 @@ module.exports = function(grunt) {
 
   // define and register public site build tasks:
   const build = [
-    'shell:build', 'sass:build', 'browserify:build', 'uglify:build'
+    'shell:clearBuild',
+    'shell:build',
+    'sass:build',
+    'browserify:build',
+    'uglify:build',
+    'hashres:build'
   ];
   grunt.registerTask('build', build);
 }

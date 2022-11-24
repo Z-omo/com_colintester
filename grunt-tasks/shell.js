@@ -5,6 +5,10 @@ module.exports = function(grunt) {
   const tasks = {
     options:  { stdout: true, stderr: true },
 
+    clearBuild: {
+      command: `rm -f ${config.buildPath}css/*.css ${config.buildPath}js/*.js`
+    },
+
     build: {
       command: `rsync -a ${fileFilter} ${config.devPath} ${config.buildPath}`
     }
