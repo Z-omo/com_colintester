@@ -14,19 +14,17 @@
   },
   "homepage": "https://github.com/Z-omo/com_colintester#readme",
   "scripts": {
-    "start": "npm run clearLocal && npm run dev",
-    "clearLocal": "rm -rf local/**/*.{css,js,map}",
-    "dev": "parcel './src/*.html' --dist-dir local -p 4000",
-    "build": "npm run clearWWW && parcel build './src/*.html' --target 'web' && npm run syncResources",
-    "clearWWW": "rm -rf www/**/*.{css,js,map}",
-    "syncResources": "rsync -a local/resources www/"
+    "start": "grunt dev",
+    "build": "grunt build",
+    "clearWWW": "rm -rf docs/**/*.{css,js,map}",
+    "syncResources": "rsync -a local/resources docs/"
   },
   "config": {
     "buildName": "onfocus",
     "srcPath": "./src/",
     "includePath": "./src/html/",
     "devPath": "./local/",
-    "buildPath": "./www/"
+    "buildPath": "./docs/"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.19.4",
