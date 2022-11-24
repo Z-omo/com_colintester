@@ -1,3 +1,20 @@
+/**
+ * JavaScript file: Gruntfile.js defines development tasks for
+ * colintester.com website.
+ *
+ * @package     OnFocus
+ * @author      Colin Tester <office@z-omo.com>
+ * 
+ * This file forms part of the installed @package and should not be copied 
+ * and/or distributed without the written consent from the file's author.
+ *
+ * @copyright: Please see: <https://en.wikipedia.org/wiki/Berne_Convention>
+ *
+ * This file and its @package are under version control.
+ */
+
+'use strict';
+
 module.exports = function(grunt) {
   const gruntConfig = {
     pkg:  grunt.file.readJSON('package.json')
