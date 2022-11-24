@@ -43,14 +43,19 @@ module.exports = function(grunt) {
     localLinks: {
       replacements: [{
         from: /href=\"(.+?)\.html\"/ig,
-        to:   (attr, i, ft, matches) => {
-          
+        to: (attr, i, ft, matches) => {
+          // assign first path component:
           const path = matches[0].split('/')[0];
-          console.log('replace -> found: ', path);
-          if (-1 === localPaths.indexOf(path)) {
-            return attr;
-          }
-          return 'href="' + matches[0] + '"';
+          
+          /*
+           * return the full found href attribute, if found path is not
+           * one of the expected local paths:
+           */
+          if (-1 === localPaths.indexOf(path)) { return attr; }
+
+          // otherwise, set href attribute value without the file extension.
+          const p = ('index' === path) ? './' : matches[0];
+          return `href="${p}"`;
         }
       }],
   
