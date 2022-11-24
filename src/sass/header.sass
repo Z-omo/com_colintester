@@ -150,7 +150,7 @@ $defaultHeaderImage: 'header-image.jpg'//'header-image-spring.jpg'
   @media only screen and (min-width: $desktopWidth)
     background-image: url('#{$hdrImagePath}large/#{$defaultHeaderImage}')
 
-$pageHeaders: blog, about, work
+$pageHeaders: blog, about, work, contact
 
 @each $hdr in $pageHeaders
   .#{$hdr} .page-header-image
@@ -161,21 +161,3 @@ $pageHeaders: blog, about, work
 
     @media only screen and (min-width: $desktopWidth)
       background-image: url('#{$hdrImagePath}large/colin-tester-#{$hdr}-header.jpg')
-
-// .articles-page .page-header-image
-//   background-image: url('#{$hdrImagePath}small/colin-tester-blog-header.jpg')
-
-//   @media only screen and (min-width: $tabletWidth)
-//     background-image: url('#{$hdrImagePath}medium/colin-tester-blog-header.jpg')
-
-//   @media only screen and (min-width: $desktopWidth)
-//     background-image: url('#{$hdrImagePath}large/colin-tester-blog-header.jpg')
-
-// .about .page-header-image
-//   background-image: url('#{$hdrImagePath}small/colin-tester-about-header.jpg')
-
-//   @media only screen and (min-width: $tabletWidth)
-//     background-image: url('#{$hdrImagePath}medium/colin-tester-about-header.jpg')
-
-//   @media only screen and (min-width: $desktopWidth)
-//     background-image: url('#{$hdrImagePath}large/colin-tester-about-header.jpg')
