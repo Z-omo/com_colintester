@@ -38,6 +38,7 @@ module.exports = function(grunt) {
   const build = [
     'shell:clearBuild',
     'shell:build',
+    'replace:localLinks',
     'sass:build',
     'browserify:build',
     'uglify:build',
