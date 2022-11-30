@@ -42,7 +42,8 @@ module.exports = function(grunt) {
     'sass:build',
     'browserify:build',
     'uglify:build',
-    'hashres:build'
+    'hashres:build',
+    'htmlmin:build'
   ];
   grunt.registerTask('build', build);
 }
