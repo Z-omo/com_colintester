@@ -130,11 +130,20 @@
 
           <p>One should also view the <a href="https://wails.io/docs/gettingstarted/installation">Wails installation document for platform specific guidance</a>.</p>
 
-          <p>To install Wails, type the following into the CLI:</p>
+          <ol>
+            <li>
+              <p>To install Wails, type the following into the CLI:</p>
           
-          <figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ go install github.com/wailsapp/wails/v2/cmd/wails@latest</code></pre></figure>
+              <figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ go install github.com/wailsapp/wails/v2/cmd/wails@latest</code></pre></figure>
+
+              <p>Latest version at the time of writing is: <strong>v2.3.1</strong></p>
+            </li>
+
+            <li>
+              <p>Once installation has completed, it is recommended to run the Wails system check, making sure the correct Wails dependencies are also installed. At the CLI, type the following:</p>
           
-          <p>Latest version at the time of writing is: <strong>v2.3.1</strong></p>
+              <figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ wails doctor</code></pre></figure></li>
+          </ol>
         </section>
 
         <section>
