@@ -9,11 +9,12 @@ $codePadding: $contentPadding / 2
 $codeBackgroundColour: rgba(theme(tertiary),0.08)
 
 .highlight
+  box-sizing: border-box
   position: relative
   margin: 0 0 $contentMargin -#{$contentPadding}
   //padding: 0 0 0 $mobileCodePadding
   padding: $mobileCodePadding
-  width: 98vw//calc(100vw - #{$mobileCodePadding})
+  width: 100vw//calc(100vw - #{$mobileCodePadding})
   max-width: 46rem//$maxContentWidth
   font-family: monospace
   font-size: 0.9rem
@@ -54,7 +55,11 @@ $codeBackgroundColour: rgba(theme(tertiary),0.08)
   table pre
     margin: 0
 
-.highlighter-rouge
+li > .highlight
+  width: auto
+
+// .highlighter-rouge
+li > code, p > code
   +corners
   padding: 0.2em 0.4em
   color: black
