@@ -104,18 +104,19 @@
         <section>
           <h2 itemprop="description" class="statement">Build backwards compatible apps with Go and Wails.</h2>
   
-  
-            <p>Wails was created to make it easier for developers to create desktop apps using Go and web technologies.</p>
-  
-            <p>A main feature of Wails is that it uses the OS native rendering engine, e.g. WebKit WebView on Mac OS, in order to present HTML views and run client-side JavaScript. An approach different from, say, <a href="https://www.electronjs.org/" title="To: the website of Electron">Electron</a>, which embeds <cite>Chromium</cite> and <cite>Node.js</cite> into the end app binary. Wails' approach results in a much smaller file size for the app binary.</p>
-  
-            <p>Wails uses <cite>Vite</cite> – a fast build tool for web technologies – to bundle and watch client-side JavaScript as it is developed. Vite's default operating mode is to parse client code to run on browsers that support ECMAScript 2015+.</p>
-  
-            <p>However, I needed to be sure that the apps I intend to share would run on both current and older desktop platforms. So, my approach in this article, was to configure Vite to produce client code that will be backwards compatible.</p>
-  
-            <p>Ultimately, I wished to see by how an experience developing with Wails can be tailored, restructuring the folder and files Wails creates automatically; in order to accommodate my operational preferences.</p>
-            
-            <p>I primarily use an Apple Mac and the the following article outlines the steps I took to provide a coherent working environment for developing desktop apps with Go and Wails.</p>
+          <p>Wails was created to make it easier for developers to create desktop apps using Go and web technologies.</p>
+
+          <p>A main feature of Wails is that it uses the OS native rendering engine, e.g. WebKit WebView on Mac OS, in order to present HTML views and run client-side JavaScript. An approach different from, say, <a href="https://www.electronjs.org/" title="To: the website of Electron">Electron</a>, which embeds <cite>Chromium</cite> and <cite>Node.js</cite> directly into the final application binary. Wails' approach, therefore, results in a much smaller file size for the app binary.</p>
+
+          <p>Wails uses <cite>Vite</cite> – a fast build tool for web technologies – to bundle and watch client-side JavaScript as it is developed. Vite's default operating mode is to parse client code to run on browsers that support ECMAScript 2015+.</p>
+
+          <p>However, I needed to be sure that the apps I intend to share would run on both current and older desktop platforms. So, my approach in this article, was to configure Vite to produce client code that will be backwards compatible.</p>
+
+          <p>Ultimately, I wished to see by how the experience of developing with Wails could be tailored, restructuring the folder and files Wails creates automatically; in order to accommodate my operational preferences.</p>
+          
+          <p>I primarily use an Apple Mac and the the following article outlines the steps I took to provide a coherent working environment for developing desktop apps with Go and Wails.</p>
+
+          <p><a href="https://github.com/Z-omo/ergo-sum">An example project to support this article is available on Github</a></p>
         </section>
 
         <section>
@@ -134,7 +135,7 @@
             <li>
               <p>To install Wails, type the following into the CLI:</p>
           
-              <figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ go install github.com/wailsapp/wails/v2/cmd/wails@latest</code></pre></figure>
+              <figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ go install github.com/wailsapp/wails/v2/cmd/wails@v2.3.1</code></pre></figure>
 
               <p>Latest version at the time of writing is: <strong>v2.3.1</strong></p>
             </li>
@@ -153,13 +154,19 @@
 
           <ol>
             <li>
-              <p>Create the project folder in the workspace.</p>
+              <p>Create the project folder in the workspace – substitute your own project name for ‘project-name’.</p>
               <figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ makedir project-name \
 &amp;&amp; cd project-name</code></pre></figure>
             </li>
             <li>
               <p>Initialise the new project workspace using Wails.</p>
               <figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ wails init -n project-name -d .</code></pre></figure>
+
+              <p>Flags used with the <em>init</em> command:</p>
+              <ul>
+                <li><code>-n</code> Set the name of the project – this is mandatory.</li>
+                <li><code>-d</code> followed by the project directory; I specified ‘.’ meaning the current directory.</li>
+              </ul>
 
               <p>Wails will create the following folder and files structure.</p>
               <figure class="highlight"><pre><code class="language-cli" data-lang="cli">.
@@ -178,12 +185,12 @@
         <section>
           <h3>Set up JavaScript dev environment</h3>
 
-          <p>For this project, I wish to develop views using sass files, bundled into a single css asset. I also wish to structure the project's JavaScript, CSS and image files under a sub-directory; in keeping with an organisation and working convention.</p>
+          <p>For this project, I wish to develop views using sass files, bundled into a single css asset. I also wish to structure the project's JavaScript, CSS and image files under a sub-directory; maintaining an organisation and working convention.</p>
 
           <ol>
             <li>Within the <code class="highlighter-rouge">frontend</code> folder, remove the <code>src</code> folder and its files.</li>
             <li>Rename the <code>frontend</code> folder to <code>src</code>.</li>
-            <li>Within the renamed ‘src’ folder create folders for: <code>js</code>, <code>sass</code> and <code>image</code>, these will hold the client code, view components, css and view images.</li>
+            <li>Within the renamed ‘src’ folder create folders for: <code>js</code>, <code>sass</code> and <code>image</code>, these will hold the JavaScript, CSS and view images respectively.</li>
             <li>Within <code>src/js</code> create a new file labelled: <code>index.js</code>.</li>
             <li>
               <p>Within <code>src/sass</code> create a new file labelled: <code>index.sass</code>.</p>
@@ -219,11 +226,11 @@
             </li>
           </ol>
 
-          <p>Vite uses <cite>RollUp</cite> to bundle JavaScript code and to get the backwards compatibility desired, we need to utilise a <cite>Babel</cite> plugin.</p>
+          <p>Vite uses <cite>RollUp</cite> to bundle JavaScript code. In order to get the desired backwards compatibility, we need to utilise a <cite>Babel</cite> plugin.</p>
 
           <ol start="9">
             <li>
-              <p>Install the following <em>npm</em> modules as dev dependencies:</p>
+              <p>At the CLI, install the following <em>npm</em> modules as dev dependencies:</p>
               <ul>
                 <li>vite@latest</li>
                 <li>sass</li>
@@ -291,7 +298,7 @@ export default {
           <ol>
             <li>
               <p>Create a PNG image file (1024 × 1024 pixels) containing your custom icon artwork and place it within the <code>build</code> folder, replacing the existing file: <code>appicon.png</code>.</p>
-              <p>Wails will use <code>appicon.png</code> as the icon when building desktop app binaries.</p>
+              <p>Wails will use <code>appicon.png</code> as the application icon when building desktop app binaries.</p>
             </li>
             <li>
               <p>Whilst in the <code>build</code> folder, remove both the <code>darwin</code> and <code>windows</code> folders. These will be rebuilt by Wails later, at which point our custom icon file will be utilised.</p>
@@ -305,7 +312,7 @@ export default {
           <p>Wails generates bindings for <a href="https://en.wikipedia.org/wiki/Inter-process_communication" title="To: more information on IPC">Inter-process Communication (IPC)</a> between Go application code and JavaScript code.</p>
 
           <ol>
-            <li>Within the root of the project folder, edit the <code>go.mod</code> file changing the <code>module</code> name, ‘changeme’ declared at the top, to something relevant to you and the project, e.g. <code>project-domain/project-name</code></li>
+            <li>Within the root of the project folder, edit the <code>go.mod</code> file changing the <code>module</code> name, ‘changeme’ declared at the top, to something relevant to you and the project, e.g. <code>project-domain/project-name</code> – substituting your own project name.</li>
             <li>Remove the <code>app.go</code> file.</li>
             <li>Create a folder labelled: ‘go’. This folder will hold all the app Go packages and files.</li>
             <li>Within the new <code>go</code> folder, create a new subfolder labelled: <code>IPC</code> (Inter-process Communication), and within that a file labelled: <code>service.go</code>.</li>
@@ -354,7 +361,7 @@ func (s *Service) Request(req Request) response {
   res.Module = req.Module
   res.Method = req.Method
 
-  // Set content to be returned to the request callee (JavaScript code):
+  // Set content to be returned to the request caller (JavaScript code):
   res.Data = data{"content": "I am thinking, therefore I exist"}
   
   return res
@@ -413,7 +420,7 @@ wailsOptions := &options.App{
   },
   // Bind our Service instance for IPC.
   Bind: []interface{}{
-    service
+    service,
   },
   Mac: macOptions,
 }
@@ -452,7 +459,7 @@ if err := wails.Run(wailsOptions); err != nil {
 
           <p>We have, therefore, two ways to reference our IPC service, either by importing it from the Wails generated JavaScript file or directly off the <code>window</code> object. I favour using the latter.</p>
 
-          <p>We can now, within our <code>src/js/bootstrap.js</code> file, establish a connection to the Go app IPC service.</p>
+          <p>We can now, within our <code>src/js/index.js</code> file, establish a connection to the Go app IPC service.</p>
 
           <ol>
             <li>
@@ -467,12 +474,12 @@ const service = window.go && window.go.IPC.Service;</code></pre></figure>
             </li>
           </ol>
 
-          <p>Let's add some more to our <code>src/index.js</code> file to make a simple request to the Service IPC for some content.</p>
+          <p>Let's add some more to our <code>src/index.js</code> file to make a simple request to the Service IPC to get content for our app main view.</p>
 
           <ol start="2">
             <li>
               <p>Append to <code>src/index.js</code> the following:</p>
-              <figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">// get as reference to the &lt;div id="app"&gt; element:
+              <figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">// assign a reference to the &lt;div id="app"&gt; element:
 const app = document.querySelector('#app');
 
 // set up service request parameters:
@@ -537,13 +544,29 @@ service.Request(params).then(res => {
 
           <ol start="4">
             <li>
-              <p>On the CLI in the root of the project folder, i.e. change directory up one level from <code>src</code>, type: <code>$ wails dev</code></p>
+              <p>On the CLI in the root of the project folder, i.e. change directory up one level from <code>src</code>, type:</p>
+
+              <figure class="highlight"><pre><code class="language-json" data-lang="json">$ wails dev</code></pre></figure>
             
               <p>Wails will go through steps to prepare the client-side code, run Vite, then build and run a desktop app.</p>
             </li>
           </ol>
 
-          <p>As a result you should see a desktop window open for your app.Wails will now operate in <em>watching</em> mode; watching for changes to the app files and assets. You can now make changes to either the JavaScript or Go code and Wails will either push those changes to the app or rebuild the app, as needed.</p>
+          <p>As a result you should see a desktop window open for your app, similar to <em>figure 1</em> below.</p>
+
+          <figure class="image">
+            <figcaption>Figure 1: running desktop app window</figcaption>
+
+            <picture>
+              <source data-srcset="resources/image/large/Go-Wails-example-desktop-app.png" media="(min-width: 69em)" />
+              <source data-srcset="resources/image/medium/Go-Wails-example-desktop-app.png" media="(min-width: 39em)" />
+              
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" data-lazlo="resources/image/small/Go-Wails-example-desktop-app.png" alt="Example of the running desktop app window." data-dims="640x494" />
+              <noscript><img src="resources/image/medium/Go-Wails-example-desktop-app.png" alt="Example of the running desktop app window." /></noscript>
+            </picture>
+          </figure>
+
+          <p>Wails will now operate in <em>watching</em> mode; watching for changes to the app files and assets. You can now make changes to the JavaScript and Go code and Wails will either push those changes to the app or rebuild the app, as needed.</p>
 
           <p>You can exit out of <em>watching</em> mode by either quitting the open app, or pressing <code>Ctrl+C</code> in the CLI.</p>
         </section>
@@ -551,9 +574,8 @@ service.Request(params).then(res => {
         <section>
           <h3>Build a final binary</h3>
 
-          <p>With the development phase working, let's also build a final binary file, one each for Mac and Windows.</p>
+          <p>With the development phase working, let's now build a final binary file, one each to run on Mac and Windows.</p>
 
-          
           <p>On the CLI in the root of the project folder, type the build command:</p>
 
           <figure class="highlight"><pre><code class="language-cli" data-lang="cli">$ wails build -clean -platform "darwin,windows/amd64" -o MyApp.exe</code></pre></figure>
@@ -565,13 +587,12 @@ service.Request(params).then(res => {
             <li><code>-o</code> followed by a filename, specifies the output filename and extension to use, although this appears to apply only to Windows binaries.</li>
           </ul>
 
-          <p>The folder <code>build/bin</code> should contain two versions of your app: one for Mac and another <code>.exe.</code> file for Windows.</p>
+          <p>The folder <code>build/bin</code> should contain two versions of your app: one for Mac and another <code>.exe</code> file for Windows.</p>
         </section>
 
         <section>
           <h3>Summary</h3>
-          <p>I hope this article is helpful with working with Go and Wails to begin developing desktop apps.</p>
-
+          
           <p>The article outlined:</p>
 
           <ul>
@@ -582,11 +603,14 @@ service.Request(params).then(res => {
             <li>Building final binaries for Mac and Windows.</li>
           </ul>
           
-          <p>It would be worth exploring further Wails' configuration options, particularly <a href="https://wails.io/docs/reference/menus">how to configure application menus</a>, and the <a href="https://wails.io/docs/reference/runtime/intro/">Wails runtime library</a>.</p>
+          <p>It would be worth exploring further the Wails configuration options, particularly <a href="https://wails.io/docs/reference/menus">how to configure application menus</a>, and the <a href="https://wails.io/docs/reference/runtime/intro/">Wails runtime library</a>.</p>
+          
+          <p>I hope this article has been helpful for you to begin developing desktop apps with Go and Wails.</p>
 
           <p>Article relevant links:</p>
   
           <ul>
+            <li><a href="https://github.com/Z-omo/ergo-sum">Example project files on Github to support this article.</a></li>
             <li>Go <em>All releases</em> downloads page: <a href="https://go.dev/dl/">https://go.dev/dl/</a></li>
             <li>Node <em>Downloads</em> page: <a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></li>
             <li>Wails website: <a href="https://wails.io/">https://wails.io/</a></li>
