@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <base href="../">
+  <base href="../../">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Colin Tester – Articles</title>
+  <title>Colin Tester – Article Title</title>
+  <meta name="description" content="Article description">
+
+  <meta name="author" content="Colin Tester">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Article Title">
+  <meta name="twitter:creator" content="@colint_focus">
+  <meta name="twitter:description" content="Article description">
+  <meta name="twitter:image" content="/resources/header/large/article-image.jpg">
+
+  <meta name="twitter:url" content="/2019/javascript-testing-with-ava">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Article Title">
+  <meta property="og:description" content="Article description">
+  <meta property="og:image" content="/resources/header/large/article-image.jpg">
+  <meta property="og:url" content="/2019/javascript-testing-with-ava">
+  <meta property="og:locale" content="en_GB">
 
 <!-- insert "favicon" -->
 <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
@@ -31,10 +48,10 @@
 <link rel="stylesheet" href="css/onfocus.css">
 <!-- end insert -->
 </head>
-<body class="blog">
-  <div class="boundary collection">
+<body>
+  <div class="boundary work-example">
 
-    <!-- insert "header" -->
+<!-- insert "header" -->
 <header>
   <h1>Colin Tester</h1>
   <a class="logo" href="index.html" title="Jump to the home page of colintester.com">
@@ -47,42 +64,109 @@
   <h2>Helping to build a more robust <span>and inclusive web</span></h2>
 </header>
 <!-- end insert -->
-  
-  <main>
-    <h1>Articles</h1>
+
+  <main itemscope itemtype="https://schema.org/Blog">
+    <h1>Article Title</h1>
+
+    <style>
+      .boundary > header .page-header-image {
+        background-image: url('resources/header/small/article-image.jpg');
+      }
+      @media only screen and (min-width: 39em) {
+        .boundary > header .page-header-image {
+          background-image: url('resources/header/medium/article-image.jpg');
+        }
+      }
+      @media only screen and (min-width: 69em) {
+        .boundary > header .page-header-image {
+          background-image: url('resources/header/large/article-image.jpg');
+        }
+      }
+    </style>
 
     <div class="content">
+      <article itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting" class="post">
+        <header>
+          <meta itemprop="mainEntityOfPage" content="/2019/javascript-testing-with-ava">
+          <meta itemprop="name headline" content="Article Title">
+          <meta itemprop="image" content="/resources/header/large/article-image.jpg">
+          <dl>
+            <dt>Published:</dt>
+            <dd><time itemprop="datePublished" datetime="2023-00-00">01 January 2023</time></dd><meta itemprop="dateModified" content="2023-00-00">
+
+            <dt>By:</dt>
+            <dd itemprop="author" itemscope itemtype="https://schema.org/Person">
+                <span itemprop="name" class="by-line">Colin Tester</span>
+            </dd></dl>
+        </header>
+        
+        <div itemprop="articleBody">
+          <section>
+            <h2 itemprop="description" class="statement">Article description</h2>
+    
+            <p>Ea suscipit in magna; eros eum ut te laoreet augue te. Nostrud nonummy nulla facilisis consequatvel eum aliquip odio, laoreet augue magna. Aliquip dignissim dolore quis ipsum enim exerci vulputate nulla ipsum. Velit illum tation vulputate augue suscipit.</p>
+          </section>
+
+          <section>
+            <h3>Sub-title.</h3>
+          </section>
+
+          <section>
+
+            <p>Links:</p>
+            
+            <ul>
+              <li></li>
+            </ul>
+          </section>
+        </div> <!-- srticleBody -->
+  
+        <footer>
+
+
+<dl class="share-links">
+  <dt>Share:</dt>
+  <dd>
+    <ul>
+      <li class="icon twitter">
+        <a href="https://twitter.com/intent/tweet?text=JavaScript%20testing%20with%20AVA%20%E2%80%93%20ES6&amp;url=https://www.colintester.com/articles/2019/javascript-testing-with-ava&amp;via=colint_focus" title="To: share this post on Twitter (link requests to open in a new browser window or tag)." target="_blank">Twitter</a>
+      </li>
+      <!-- <li class="icon facebook">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.colintester.com/articles/2019/javascript-testing-with-ava" title="To: share this post on Facebook (link requests to open in a new browser window or tag)." target="_blank">Facebook</a>
+      </li> -->
+      <li class="icon linkedin">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;source=Colin%20Tester&amp;url=https://www.colintester.com/articles/2019/javascript-testing-with-ava&amp;title=JavaScript%20testing%20with%20AVA%20%E2%80%93%20ES6" title="To: share this post on LinkedIn (link requests to open in a new browser window or tag)." target="_blank">LinkedIn</a>
+      </li>
+      <!-- <li class="icon google">
+        <a href="https://plus.google.com/share?url=https://www.colintester.com/articles/2019/javascript-testing-with-ava" title="To: share this post on Google+ (link requests to open in a new browser window or tag)." target="_blank">Google+</a>
+      </li> -->
+      <li class="icon email">
+        <a href="mailto:?subject=JavaScript%20testing%20with%20AVA%20%E2%80%93%20ES6&amp;body=Interesting%20article%20from%20Colin Tester:%20%0A%0ATitle:%20JavaScript%20testing%20with%20AVA%20%E2%80%93%20ES6%0ALink:%20https://www.colintester.com/articles/2019/javascript-testing-with-ava" title="To: share this post via e-mail (this link requests to use your installed e-mail program).">Email</a>
+      </li>
+    </ul>
+  </dd>
+</dl><span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+            <meta itemprop="name" content="Z-omo">
+            <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject"><meta itemprop="url" content="http://z-omo.com/resources/image/z-omo-logo.png"></span>
+          </span>
+        </footer>
+      </article>
+    </div>
+
+    <aside class="side-bar">
+<!-- insert "contact-cta" -->
+<p>Interested to learn how I might assist with your project? <a class="button" href="contact.html">Get in touch</a></p>
+
+<!-- end insert -->
+
+<!-- insert "github-link" -->
+<p class="inline-icon github"><a href="https://github.com/Z-omo" title="See Colin Tester's code examples on github.com">Code on Github</a></p>
+<!-- end insert -->
       
+      <p>Latest posts:</p>
+
 <!-- insert "blog-article-list" -->
 <div itemscope itemtype="https://schema.org/Blog" class="articles">
-
-  <article itemscope itemtype="http://schema.org/BlogPosting" class="with-image">
-    <noscript>
-      <style>#go-wails { background-image: url('resources/posts/tiles/desktop-app-development-with-go-and-wails.jpg'); }</style>
-    </noscript>
-    <meta itemprop="image" content="/resources/posts/tiles/desktop-app-development-with-go-and-wails.jpg">
-
-    <a itemprop="url" id="go-wails" href="articles/2023/desktop-app-development-with-go-and-wails.html" title="To read more on: Desktop App Development with Go and Wails" data-lazlo="background-image: url('resources/posts/tiles/desktop-app-development-with-go-and-wails.jpg')" data-lazlo-attr="style">
-
-      <header>
-        <meta itemprop="mainEntityOfPage" content="/2023/desktop-app-development-with-go-and-wails">
-        <h1 itemprop="headline">Desktop App Development with Go and Wails</h1>
-        <time itemprop="datePublished" datetime="2023-03-07 00:00:00 +0100">7 March 2023</time>
-        <meta itemprop="dateModified" content="2023-03-07 00:00:00 +0100">
-        <span itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Colin Tester"></span>
-      </header>
-      
-      <meta itemprop="description" content="Build backwards compatible apps with Go and Wails.">
-    </a>
-
-    <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-      <meta itemprop="name" content="Z-omo">
-      <span itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-        <meta itemprop="url" content="http://z-omo.com/resources/image/z-omo-logo.png">
-      </span>
-    </span>
-  </article>
-
   <article itemscope itemtype="http://schema.org/BlogPosting" class="with-image">
     <noscript>
       <style>#three-to-go { background-image: url('resources/posts/tiles/three-to-go.jpg'); }</style>
@@ -141,7 +225,8 @@
 </div>
 <!-- end insert -->
 
-    </div>
+    </aside>
+  
   </main>
   
 <!-- insert "navigation" -->
@@ -156,7 +241,7 @@
   </ul>
 </nav>
 <!-- end insert -->
-  
+
 <!-- insert "footer" -->
 <footer>
   <p><span class="copyright">©</span> Colin Tester 2022</p>
@@ -164,11 +249,9 @@
   <p>Interested to learn how I might assist with your project? <a class="button" href="contact.html">Get in touch</a></p>
 </footer>
 <!-- end insert -->
-  
-</div><!-- .boundary -->
-  
+  </div>
 
-  <!-- insert "client-js" -->
+<!-- insert "client-js" -->
 <script src="js/onfocus.js"></script>
 <!-- end insert -->
 
