@@ -13,10 +13,10 @@ body
 
 //—————————————————————————————————————————————: Headings
 $headingFontSize: $contentFontSize * $gRatio
-$headingLineHeight: ($contentFontSize * $gRatio) * $gRatio
+$headingLineHeight: ($contentFontSize * $gRatio) + 0.5rem // * $gRatio
 
 h1, h2, h3, .statement
-  margin: 0 0 $contentMargin
+  margin: $bodyContentLineHeight 0 $bodyContentLineHeight
   font-family: $headingFont
   font-size: $headingFontSize
   line-height: $headingLineHeight
@@ -110,13 +110,16 @@ ol
   counter-reset: orderedListCounter
 
   // counter reset when ‘start’ attribute is used:
-  @for $start from 1 through 10
+  @for $start from 1 through 12
     &[start="#{$start}"]
       counter-reset: orderedListCounter #{$start - 1}
 
   > li
     position: relative
     padding-left: 1rem
+
+    @media only screen and (min-width: $tabletWidth)
+      padding-left: 1.2rem
 
     &::before
       content: counter(orderedListCounter)
