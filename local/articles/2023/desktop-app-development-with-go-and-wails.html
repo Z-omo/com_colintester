@@ -114,7 +114,7 @@
 
           <p>Ultimately, I wished to see by how the experience of developing with Wails could be tailored, restructuring the folder and files Wails creates automatically; in order to accommodate my operational preferences.</p>
           
-          <p>I primarily use an Apple Mac and the the following article outlines the steps I took to provide a coherent working environment for developing desktop apps with Go and Wails.</p>
+          <p>I primarily use an Apple Mac and the following article outlines the steps I took to provide a coherent working environment for developing desktop apps with Go and Wails.</p>
 
           <p><a href="https://github.com/Z-omo/ergo-sum">An example project to support this article is available on Github</a></p>
         </section>
@@ -465,7 +465,7 @@ if err := wails.Run(wailsOptions); err != nil {
             <li>
               <p>Within the <code>src/js</code> folder open to edit <code>index.js</code> and add the following:</p>
 
-              <figure class="highlight"><pre><code class="language-javascripth" data-lang="javascripth">// assign a reference to the IPC servive.
+              <figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">// assign a reference to the IPC servive.
 const service = window.go && window.go.IPC.Service;</code></pre></figure>
               
               <p>In the example code above, the <code>service</code> reference is a global but could be assigned any way deemed appropriate.</p>
