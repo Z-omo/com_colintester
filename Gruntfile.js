@@ -43,7 +43,8 @@ module.exports = function(grunt) {
     'browserify:build',
     'uglify:build',
     'hashres:build',
-    'htmlmin:build'
+    // 'htmlmin:build'
+    'minifyHtml:build',
   ];
   grunt.registerTask('build', build);
 }
