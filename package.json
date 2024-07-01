@@ -31,11 +31,11 @@
     "babelify": "^10.0.0",
     "grunt": "^1.5.3",
     "grunt-browserify": "^6.0.0",
-    "grunt-contrib-htmlmin": "^3.1.0",
     "grunt-contrib-sass": "^2.0.0",
     "grunt-contrib-uglify": "^5.2.2",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-hashres": "^0.4.1",
+    "grunt-minify-html": "^3.0.0",
     "grunt-shell": "^4.0.0",
     "grunt-text-replace": "^0.4.0"
   }
