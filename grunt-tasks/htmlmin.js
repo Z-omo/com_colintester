@@ -24,5 +24,5 @@ module.exports = function(grunt) {
   }
 
   grunt.config('htmlmin', tasks);
-  grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  // grunt.loadNpmTasks('grunt-contrib-htmlmin');
 };
